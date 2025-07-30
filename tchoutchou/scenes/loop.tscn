@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://7axpi421xeat"]
 
 [ext_resource type="Shader" uid="uid://rwyy28i6j2lo" path="res://shaders/rope.gdshader" id="1_p0t4i"]
-[ext_resource type="Script" uid="uid://b3n037mapvpls" path="res://scripts/rope.gd" id="2_fpe6o"]
+[ext_resource type="Script" path="res://scripts/rope.gd" id="2_fpe6o"]
 [ext_resource type="Texture2D" uid="uid://c4j6sivvsvcb0" path="res://sprites/placeholder-rails.png" id="3_kyqv0"]
 [ext_resource type="PackedScene" uid="uid://sn8d1kq40iyd" path="res://scenes/pin.tscn" id="4_gdvn4"]
 

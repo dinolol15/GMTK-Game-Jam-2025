@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvgjn5yck8dbc"]
+[gd_scene load_steps=5 format=3 uid="uid://cvgjn5yck8dbc"]
 
+[ext_resource type="Script" uid="uid://clyb22gg0xpo4" path="res://scripts/main_base.gd" id="1_7x50c"]
 [ext_resource type="Texture2D" uid="uid://c185w4i1qg0wv" path="res://sprites/placeholder-base.png" id="1_lo0ow"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2mtuc"]
@@ -9,6 +10,7 @@ size = Vector2(96, 96)
 size = Vector2(128, 128)
 
 [node name="MainBase" type="StaticBody2D"]
+script = ExtResource("1_7x50c")
 
 [node name="Sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_lo0ow")
@@ -17,6 +19,8 @@ texture = ExtResource("1_lo0ow")
 shape = SubResource("RectangleShape2D_2mtuc")
 
 [node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_irpje")
