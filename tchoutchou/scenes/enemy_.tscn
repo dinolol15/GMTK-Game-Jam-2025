@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfbf28ehdhg35"]
+
+[ext_resource type="Script" uid="uid://b6c8nc5cl45mx" path="res://scripts/enemy.gd" id="1_4gyqm"]
+[ext_resource type="Texture2D" uid="uid://531prnm3uw7k" path="res://sprites/placeholder-enemy.png" id="1_7k104"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4gyqm"]
+size = Vector2(32, 32)
+
+[node name="Enemy" type="CharacterBody2D"]
+script = ExtResource("1_4gyqm")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(6, 0)
+texture = ExtResource("1_7k104")
+
+[node name="PhysicsCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4gyqm")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
+position = Vector2(6, 0)
+polygon = PackedVector2Array(-32, -32, 32, 0, -32, 32)
