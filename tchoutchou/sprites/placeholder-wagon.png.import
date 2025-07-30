@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://xhh1f314stja"
-path="res://.godot/imported/placeholder-pin.png-5862c159e62aa24998fa59338127bbb6.ctex"
+uid="uid://clsblcolofkb2"
+path="res://.godot/imported/placeholder-wagon.png-33914d214961552353adfe1fd559e447.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://placeholder-pin.png"
-dest_files=["res://.godot/imported/placeholder-pin.png-5862c159e62aa24998fa59338127bbb6.ctex"]
+source_file="res://sprites/placeholder-wagon.png"
+dest_files=["res://.godot/imported/placeholder-wagon.png-33914d214961552353adfe1fd559e447.ctex"]
 
 [params]
 

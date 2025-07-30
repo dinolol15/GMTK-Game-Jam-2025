@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b63q2ut1by35n"
-path="res://.godot/imported/placeholder-rails.png-e3174882d8201c3d46dc9f25982e7713.ctex"
+uid="uid://cbqdtad8r7syi"
+path="res://.godot/imported/placeholder-pin.png-62c8c929dbd90bba80b0b7231b8b9c08.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://placeholder-rails.png"
-dest_files=["res://.godot/imported/placeholder-rails.png-e3174882d8201c3d46dc9f25982e7713.ctex"]
+source_file="res://sprites/placeholder-pin.png"
+dest_files=["res://.godot/imported/placeholder-pin.png-62c8c929dbd90bba80b0b7231b8b9c08.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxial22n2yeuc"
-path="res://.godot/imported/placeholder-wagon.png-47b1e3044fecb3b79974c9d45dea76d8.ctex"
+uid="uid://c4j6sivvsvcb0"
+path="res://.godot/imported/placeholder-rails.png-7baac8ab6b8b1ca9b52f9a8290e62442.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://placeholder-wagon.png"
-dest_files=["res://.godot/imported/placeholder-wagon.png-47b1e3044fecb3b79974c9d45dea76d8.ctex"]
+source_file="res://sprites/placeholder-rails.png"
+dest_files=["res://.godot/imported/placeholder-rails.png-7baac8ab6b8b1ca9b52f9a8290e62442.ctex"]
 
 [params]
 
