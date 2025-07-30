@@ -1,0 +1,97 @@
+[gd_scene load_steps=9 format=3 uid="uid://cilejwrn0sfvw"]
+
+[ext_resource type="Texture2D" uid="uid://531prnm3uw7k" path="res://sprites/placeholder-enemy.png" id="1_ekqtm"]
+[ext_resource type="Script" uid="uid://c4n8drsmotpco" path="res://ennemi_test.gd" id="1_k0dgy"]
+[ext_resource type="Texture2D" uid="uid://g7e76vkcri2m" path="res://sprites/icon.svg" id="2_6gaxv"]
+[ext_resource type="Script" uid="uid://dbclqm0ucf3a4" path="res://character_body_2d.gd" id="4_3eocl"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_3eocl"]
+vertices = PackedVector2Array(1148.06, 652.906, 22.8125, 643.078, 11.1875, 33.9766, 1151.93, 32.0078)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(13, 653, 1158, 663, 1162, 22, 1, 24)])
+parsed_collision_mask = 4294967047
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k0dgy"]
+size = Vector2(17, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3eocl"]
+size = Vector2(130, 127)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_48ahj"]
+radius = 85.1469
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+position = Vector2(578, 323)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(-6, -16)
+navigation_polygon = SubResource("NavigationPolygon_3eocl")
+
+[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="NavigationRegion2D"]
+position = Vector2(580, 295)
+vertices = PackedVector2Array(-74, 62, -76, -67, 70, -69, 68, 64)
+avoidance_layers = 3
+
+[node name="ennemi_test" type="CharacterBody2D" parent="." node_paths=PackedStringArray("player")]
+position = Vector2(1004, 470)
+collision_layer = 3
+collision_mask = 3
+motion_mode = 1
+wall_min_slide_angle = 0.0
+script = ExtResource("1_k0dgy")
+player = NodePath("../Player")
+
+[node name="Sprite2D" type="Sprite2D" parent="ennemi_test"]
+texture = ExtResource("1_ekqtm")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="ennemi_test"]
+path_max_distance = 203.0
+path_postprocessing = 1
+avoidance_enabled = true
+avoidance_layers = 3
+avoidance_mask = 3
+debug_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ennemi_test"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_k0dgy")
+
+[node name="Timer" type="Timer" parent="ennemi_test"]
+wait_time = 0.1
+autostart = true
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(571, 436)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D2"]
+texture = ExtResource("2_6gaxv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(-1, -0.5)
+shape = SubResource("RectangleShape2D_3eocl")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(574, 279)
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+texture = ExtResource("2_6gaxv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+visible = false
+shape = SubResource("CircleShape2D_48ahj")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+position = Vector2(151, 275)
+script = ExtResource("4_3eocl")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+texture = ExtResource("2_6gaxv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_k0dgy")
+
+[connection signal="timeout" from="ennemi_test/Timer" to="ennemi_test" method="_on_timer_timeout"]
