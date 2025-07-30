@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://7axpi421xeat"]
+
+[ext_resource type="Shader" uid="uid://rwyy28i6j2lo" path="res://shaders/rope.gdshader" id="1_p0t4i"]
+[ext_resource type="Script" uid="uid://b3n037mapvpls" path="res://scripts/rope.gd" id="2_fpe6o"]
+[ext_resource type="Texture2D" uid="uid://c4j6sivvsvcb0" path="res://sprites/placeholder-rails.png" id="3_kyqv0"]
+[ext_resource type="PackedScene" uid="uid://sn8d1kq40iyd" path="res://scenes/pin.tscn" id="4_gdvn4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ayrsc"]
+shader = ExtResource("1_p0t4i")
+shader_parameter/color_1 = Color(0.87, 0.696, 0, 1)
+shader_parameter/color_2 = Color(0.79, 0.579333, 0, 1)
+shader_parameter/scale_x = 0.01
+
+[node name="Loop" type="Node2D"]
+
+[node name="Rope" type="Line2D" parent="."]
+material = SubResource("ShaderMaterial_ayrsc")
+instance_shader_parameters/rope_length = 619.461
+position = Vector2(5, -6)
+points = PackedVector2Array(447, 137, 473, 236, 862, 41, 538, 68)
+closed = true
+width = 20.0
+texture_mode = 2
+joint_mode = 2
+round_precision = 16
+antialiased = true
+script = ExtResource("2_fpe6o")
+
+[node name="Line2D" type="Line2D" parent="."]
+points = PackedVector2Array(291, 239, 304, 316, 218, 317, 97, 370)
+width = 50.0
+texture = ExtResource("3_kyqv0")
+texture_mode = 1
+joint_mode = 2
+
+[node name="Pin" parent="." instance=ExtResource("4_gdvn4")]
+position = Vector2(632, 85)

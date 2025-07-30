@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://sn8d1kq40iyd"]
+
+[ext_resource type="Texture2D" uid="uid://cbqdtad8r7syi" path="res://sprites/placeholder-pin.png" id="1_p1640"]
+
+[node name="Pin" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_p1640")
