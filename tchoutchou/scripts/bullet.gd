@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 var speed = 500.0
-var range = 1000.0
+var projectile_range = 1000.0
 var is_enemy = true
 var damage = 0.0
 var distance = 0.0
@@ -15,5 +15,5 @@ func _physics_process(delta: float) -> void:
 	distance += speed / 60
 	move_and_slide()
 
-	if distance >= range:
+	if distance >= projectile_range:
 		queue_free()
