@@ -64,6 +64,7 @@ render_line = false
 line_width = 20.0
 enable_collisions = true
 collision_radius = 10.0
+resolve_collisions_while_constraining = true
 metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="Camera2D" type="Camera2D" parent="."]
