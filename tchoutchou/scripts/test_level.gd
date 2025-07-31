@@ -2,16 +2,23 @@ extends Node2D
 
 
 var counter = 0
-var enemy
+var strafer = preload("res://scenes/enemy_strafer.tscn")
+var exploder = preload("res://scenes/enemy_exploder.tscn")
 
 
 func _ready() -> void:
-	enemy = load("res://scenes/enemy_.tscn")
+	pass
 
 
 func _physics_process(delta: float) -> void:
-	if counter % 60 == 0:
-		var enemy_instance = enemy.instantiate()
+	if counter % 120 == 0:
+		var enemy_instance = strafer.instantiate()
+
+		enemy_instance.position = Vector2.from_angle(randf() * 2 * PI) * 500
+		add_child(enemy_instance)
+
+	if counter % 180 == 90:
+		var enemy_instance = exploder.instantiate()
 
 		enemy_instance.position = Vector2.from_angle(randf() * 2 * PI) * 500
 		add_child(enemy_instance)

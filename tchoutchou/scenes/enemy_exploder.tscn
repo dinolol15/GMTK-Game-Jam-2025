@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://bibmsnuaklo5j"]
+
+[ext_resource type="Script" uid="uid://b6c8nc5cl45mx" path="res://scripts/enemy.gd" id="1_2regq"]
+[ext_resource type="Texture2D" uid="uid://531prnm3uw7k" path="res://sprites/placeholder-enemy.png" id="2_nrwla"]
+[ext_resource type="AudioStream" uid="uid://dohxqoawgryqp" path="res://plink_sfx.tres" id="3_hs1j0"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4gyqm"]
+size = Vector2(32, 32)
+
+[node name="Enemy" type="CharacterBody2D"]
+scale = Vector2(0.33, 0.33)
+script = ExtResource("1_2regq")
+BASE_SPEED = 150.0
+BASE_DAMAGE = 20.0
+BASE_FIRERATE = 0.0
+AI_TYPE = "exploder"
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(6, 0)
+texture = ExtResource("2_nrwla")
+
+[node name="PhysicsCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4gyqm")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Hitbox"]
+position = Vector2(6, 0)
+polygon = PackedVector2Array(-32, -32, 32, 0, -32, 32)
+
+[node name="GunSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_hs1j0")
+pitch_scale = 1.25

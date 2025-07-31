@@ -1,0 +1,19 @@
+[gd_resource type="AudioStreamRandomizer" load_steps=7 format=3 uid="uid://dohxqoawgryqp"]
+
+[ext_resource type="AudioStream" uid="uid://c7b6wbgste3gd" path="res://sounds/plink-0.mp3" id="1_ju25d"]
+[ext_resource type="AudioStream" uid="uid://jsccgb0tslni" path="res://sounds/plink-1.mp3" id="2_m0atj"]
+[ext_resource type="AudioStream" uid="uid://dqd0nd7uwc1qu" path="res://sounds/plink-2.mp3" id="3_drmjg"]
+[ext_resource type="AudioStream" uid="uid://cuulawmx82324" path="res://sounds/plink-3.mp3" id="4_riyn3"]
+[ext_resource type="AudioStream" uid="uid://dsocysg1aso88" path="res://sounds/plink-4.mp3" id="5_rypyh"]
+[ext_resource type="AudioStream" uid="uid://b1y3oxu3hxpya" path="res://sounds/plink-5.mp3" id="6_tjgcm"]
+
+[resource]
+playback_mode = 1
+random_pitch = 1.1
+streams_count = 6
+stream_0/stream = ExtResource("1_ju25d")
+stream_1/stream = ExtResource("2_m0atj")
+stream_2/stream = ExtResource("3_drmjg")
+stream_3/stream = ExtResource("4_riyn3")
+stream_4/stream = ExtResource("5_rypyh")
+stream_5/stream = ExtResource("6_tjgcm")
