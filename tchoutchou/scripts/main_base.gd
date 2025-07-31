@@ -14,7 +14,7 @@ func _ready() -> void:
 
 
 func _process(delta: float) -> void:
-	pass
+	$Healthbar.text = str(health)
 	#if play_damage_sound:
 		#$DamageSFX.play()
 		#play_damage_sound = false

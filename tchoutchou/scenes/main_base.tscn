@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2mtuc"]
 size = Vector2(96, 96)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_irpje"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0mp7v"]
 size = Vector2(128, 128)
 
 [node name="MainBase" type="StaticBody2D"]
@@ -24,12 +24,31 @@ collision_layer = 2
 collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("RectangleShape2D_irpje")
+shape = SubResource("RectangleShape2D_0mp7v")
 debug_color = Color(1, 0.361481, 0.350434, 0.42)
 
 [node name="PlinkSFX" type="AudioStreamPlayer2D" parent="."]
 visible = false
 stream = ExtResource("3_0mp7v")
 pitch_scale = 1.25
+
+[node name="Healthbar" type="Label" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -46.0
+offset_right = 31.0
+offset_bottom = -23.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "{health}"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]
