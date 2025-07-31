@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://tegrvon8nml8"]
+
+[ext_resource type="Script" uid="uid://ynwvkjawtruu" path="res://scripts/locomotive.gd" id="1_b570b"]
+[ext_resource type="Texture2D" uid="uid://bvlrb1mm252pp" path="res://sprites/placeholder-loco.png" id="2_rkiwd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b570b"]
+size = Vector2(64, 32)
+
+[node name="Locomotive" type="PathFollow2D"]
+script = ExtResource("1_b570b")
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatableBody2D"]
+shape = SubResource("RectangleShape2D_b570b")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_rkiwd")

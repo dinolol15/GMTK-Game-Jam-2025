@@ -1,37 +1,23 @@
-[gd_scene load_steps=9 format=3 uid="uid://7axpi421xeat"]
+[gd_scene load_steps=8 format=3 uid="uid://7axpi421xeat"]
 
-[ext_resource type="Shader" uid="uid://rwyy28i6j2lo" path="res://shaders/rope.gdshader" id="2_kyqv0"]
-[ext_resource type="Script" uid="uid://d3tepafsjs8x6" path="res://scripts/rope_loop.gd" id="3_kyqv0"]
-[ext_resource type="Script" uid="uid://1xluodkpnre3" path="res://addons/ropesim/RopeHandle.gd" id="4_5h6nw"]
-[ext_resource type="PackedScene" uid="uid://21djceuff8ui" path="res://scenes/pin.tscn" id="4_gdvn4"]
-[ext_resource type="Script" uid="uid://b2shq2gjd4fvt" path="res://addons/ropesim/Rope.gd" id="4_kyqv0"]
+[ext_resource type="Shader" uid="uid://rwyy28i6j2lo" path="res://shaders/rope.gdshader" id="1_hmrka"]
+[ext_resource type="Script" uid="uid://bmui05khb003x" path="res://scripts/loop_path.gd" id="1_wm54x"]
+[ext_resource type="Script" uid="uid://d3tepafsjs8x6" path="res://scripts/rope_loop.gd" id="2_wm54x"]
+[ext_resource type="Script" uid="uid://1xluodkpnre3" path="res://addons/ropesim/RopeHandle.gd" id="3_jx6ql"]
+[ext_resource type="Script" uid="uid://b2shq2gjd4fvt" path="res://addons/ropesim/Rope.gd" id="4_qxpub"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fpe6o"]
-size = Vector2(1, 1)
-
-[sub_resource type="BoxMesh" id="BoxMesh_ayrsc"]
+[sub_resource type="Curve2D" id="Curve2D_kyqv0"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_gdvn4"]
-shader = ExtResource("2_kyqv0")
+shader = ExtResource("1_hmrka")
 shader_parameter/color_1 = Color(1, 0.883333, 0.3, 1)
 shader_parameter/color_2 = Color(1, 0.748, 0.16, 1)
 shader_parameter/scale = Vector2(0.025, 0.5)
 
-[node name="Loop" type="Node2D"]
-
-[node name="Pin" parent="." node_paths=PackedStringArray("rope_loop") instance=ExtResource("4_gdvn4")]
-position = Vector2(632, 85)
-rope_loop = NodePath("../RopeLoop")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-301, -91)
-scale = Vector2(100, 100)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("RectangleShape2D_fpe6o")
-
-[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D"]
-mesh = SubResource("BoxMesh_ayrsc")
+[node name="LoopPath" type="Path2D" node_paths=PackedStringArray("rope_loop")]
+curve = SubResource("Curve2D_kyqv0")
+script = ExtResource("1_wm54x")
+rope_loop = NodePath("RopeLoop")
 
 [node name="RopeLoop" type="Line2D" parent="."]
 material = SubResource("ShaderMaterial_gdvn4")
@@ -44,18 +30,18 @@ joint_mode = 2
 begin_cap_mode = 2
 end_cap_mode = 2
 antialiased = true
-script = ExtResource("3_kyqv0")
+script = ExtResource("2_wm54x")
 target_rope_path = NodePath("Rope")
 position_mode = 0
 metadata/_custom_type_script = "uid://dfppmnngy2wx4"
 
 [node name="RopeHandle" type="Marker2D" parent="RopeLoop"]
-script = ExtResource("4_5h6nw")
+script = ExtResource("3_jx6ql")
 rope_path = NodePath("../Rope")
 metadata/_custom_type_script = "uid://1xluodkpnre3"
 
 [node name="Rope" type="Node2D" parent="RopeLoop"]
-script = ExtResource("4_kyqv0")
+script = ExtResource("4_qxpub")
 num_segments = 255
 rope_length = 1000.0
 gravity = 0.0
@@ -65,6 +51,5 @@ line_width = 20.0
 enable_collisions = true
 collision_radius = 10.0
 resolve_collisions_while_constraining = true
+collision_mask = 8
 metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
-
-[node name="Camera2D" type="Camera2D" parent="."]

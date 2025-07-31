@@ -42,6 +42,8 @@ click={
 2d_physics/layer_1="Collisions"
 2d_physics/layer_2="AllyHitboxes"
 2d_physics/layer_3="EnemyHitboxes"
+2d_physics/layer_4="RopeColliders"
+2d_physics/layer_5="TrainHitboxes"
 
 [rendering]
 

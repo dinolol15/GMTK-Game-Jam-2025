@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://h7ul73bxxghh"]
+
+[ext_resource type="Script" uid="uid://cisxok4vxv7c4" path="res://scripts/station.gd" id="1_k3uot"]
+[ext_resource type="Texture2D" uid="uid://c185w4i1qg0wv" path="res://sprites/placeholder-base.png" id="2_axeev"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rvx7u"]
+radius = 256.0
+
+[node name="AmmoStation" type="Node2D"]
+script = ExtResource("1_k3uot")
+metadata/_custom_type_script = "uid://cisxok4vxv7c4"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_rvx7u")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 1, 1)
+texture = ExtResource("2_axeev")
