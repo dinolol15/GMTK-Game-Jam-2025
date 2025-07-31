@@ -1,6 +1,6 @@
 @tool
-class_name Rope
-extends Line2D
+class_name RopeLoop
+extends RopeRendererLine2D
 
 
 func get_length() -> float:
@@ -8,7 +8,7 @@ func get_length() -> float:
 	var previous_point = points[-1]
 	for point in points:
 		length += previous_point.distance_to(point)
-	print(length)
+		previous_point = point
 	return length
 
 
@@ -16,5 +16,5 @@ func update_rope_scale() -> void:
 	set_instance_shader_parameter("rope_length", get_length())
 
 
-func _process(delta):
+func _process(_delta):
 	update_rope_scale()

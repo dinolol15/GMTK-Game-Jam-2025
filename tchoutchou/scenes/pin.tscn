@@ -1,8 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://sn8d1kq40iyd"]
+[gd_scene load_steps=4 format=3 uid="uid://21djceuff8ui"]
 
+[ext_resource type="Script" uid="uid://cy8gcbjkdkq25" path="res://scripts/pin.gd" id="1_7o8e5"]
 [ext_resource type="Texture2D" uid="uid://cbqdtad8r7syi" path="res://sprites/placeholder-pin.png" id="1_p1640"]
 
-[node name="Pin" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_p1640"]
+radius = 32.0
+
+[node name="Pin" type="AnimatableBody2D"]
+script = ExtResource("1_7o8e5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_p1640")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_p1640")

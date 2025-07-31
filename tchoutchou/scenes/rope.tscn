@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://bnexaq5kidc1i"]
+
+[ext_resource type="Shader" uid="uid://rwyy28i6j2lo" path="res://shaders/rope.gdshader" id="1_ghbyf"]
+[ext_resource type="Script" uid="uid://4viek0ldslt1" path="res://scripts/rope_old.gd" id="2_ghbyf"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ayrsc"]
+shader = ExtResource("1_ghbyf")
+shader_parameter/color_1 = Color(0.87, 0.696, 0, 1)
+shader_parameter/color_2 = Color(0.79, 0.579333, 0, 1)
+shader_parameter/scale = Vector2(1, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ghbyf"]
+
+[node name="Rope" type="Line2D" node_paths=PackedStringArray("shape_cast")]
+material = SubResource("ShaderMaterial_ayrsc")
+instance_shader_parameters/rope_length = 952.172
+points = PackedVector2Array(-463, -2, -203, -272, 525, -162, -31, 201, -214, 277)
+closed = true
+width = 20.0
+texture_mode = 2
+joint_mode = 2
+round_precision = 16
+antialiased = true
+script = ExtResource("2_ghbyf")
+shape_cast = NodePath("ShapeCast2D")
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+shape = SubResource("CircleShape2D_ghbyf")

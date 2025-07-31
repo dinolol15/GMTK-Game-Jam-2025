@@ -1,37 +1,69 @@
-[gd_scene load_steps=6 format=3 uid="uid://7axpi421xeat"]
+[gd_scene load_steps=9 format=3 uid="uid://7axpi421xeat"]
 
-[ext_resource type="Shader" uid="uid://rwyy28i6j2lo" path="res://shaders/rope.gdshader" id="1_p0t4i"]
-[ext_resource type="Script" path="res://scripts/rope.gd" id="2_fpe6o"]
-[ext_resource type="Texture2D" uid="uid://c4j6sivvsvcb0" path="res://sprites/placeholder-rails.png" id="3_kyqv0"]
-[ext_resource type="PackedScene" uid="uid://sn8d1kq40iyd" path="res://scenes/pin.tscn" id="4_gdvn4"]
+[ext_resource type="Shader" uid="uid://rwyy28i6j2lo" path="res://shaders/rope.gdshader" id="2_kyqv0"]
+[ext_resource type="Script" uid="uid://d3tepafsjs8x6" path="res://scripts/rope_loop.gd" id="3_kyqv0"]
+[ext_resource type="Script" uid="uid://1xluodkpnre3" path="res://addons/ropesim/RopeHandle.gd" id="4_5h6nw"]
+[ext_resource type="PackedScene" uid="uid://21djceuff8ui" path="res://scenes/pin.tscn" id="4_gdvn4"]
+[ext_resource type="Script" uid="uid://b2shq2gjd4fvt" path="res://addons/ropesim/Rope.gd" id="4_kyqv0"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ayrsc"]
-shader = ExtResource("1_p0t4i")
-shader_parameter/color_1 = Color(0.87, 0.696, 0, 1)
-shader_parameter/color_2 = Color(0.79, 0.579333, 0, 1)
-shader_parameter/scale_x = 0.01
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fpe6o"]
+size = Vector2(1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ayrsc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gdvn4"]
+shader = ExtResource("2_kyqv0")
+shader_parameter/color_1 = Color(1, 0.883333, 0.3, 1)
+shader_parameter/color_2 = Color(1, 0.748, 0.16, 1)
+shader_parameter/scale = Vector2(0.025, 0.5)
 
 [node name="Loop" type="Node2D"]
 
-[node name="Rope" type="Line2D" parent="."]
-material = SubResource("ShaderMaterial_ayrsc")
-instance_shader_parameters/rope_length = 619.461
-position = Vector2(5, -6)
-points = PackedVector2Array(447, 137, 473, 236, 862, 41, 538, 68)
+[node name="Pin" parent="." node_paths=PackedStringArray("rope_loop") instance=ExtResource("4_gdvn4")]
+position = Vector2(632, 85)
+rope_loop = NodePath("../RopeLoop")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-301, -91)
+scale = Vector2(100, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_fpe6o")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="StaticBody2D"]
+mesh = SubResource("BoxMesh_ayrsc")
+
+[node name="RopeLoop" type="Line2D" parent="."]
+material = SubResource("ShaderMaterial_gdvn4")
+instance_shader_parameters/rope_length = 2000.0
+points = PackedVector2Array(0, 0, 0, 3.92157, 0, 7.84314, 0, 11.7647, 0, 15.6863, 0, 19.6078, 0, 23.5294, 0, 27.451, 0, 31.3725, 0, 35.2941, 0, 39.2157, 0, 43.1373, 0, 47.0588, 0, 50.9804, 0, 54.902, 0, 58.8235, 0, 62.7451, 0, 66.6667, 0, 70.5882, 0, 74.5098, 0, 78.4314, 0, 82.353, 0, 86.2745, 0, 90.1961, 0, 94.1177, 0, 98.0392, 0, 101.961, 0, 105.882, 0, 109.804, 0, 113.726, 0, 117.647, 0, 121.569, 0, 125.49, 0, 129.412, 0, 133.333, 0, 137.255, 0, 141.176, 0, 145.098, 0, 149.02, 0, 152.941, 0, 156.863, 0, 160.784, 0, 164.706, 0, 168.627, 0, 172.549, 0, 176.471, 0, 180.392, 0, 184.314, 0, 188.235, 0, 192.157, 0, 196.078, 0, 200, 0, 203.922, 0, 207.843, 0, 211.765, 0, 215.686, 0, 219.608, 0, 223.529, 0, 227.451, 0, 231.373, 0, 235.294, 0, 239.216, 0, 243.137, 0, 247.059, 0, 250.98, 0, 254.902, 0, 258.824, 0, 262.745, 0, 266.667, 0, 270.588, 0, 274.51, 0, 278.431, 0, 282.353, 0, 286.275, 0, 290.196, 0, 294.118, 0, 298.039, 0, 301.961, 0, 305.882, 0, 309.804, 0, 313.726, 0, 317.647, 0, 321.569, 0, 325.49, 0, 329.412, 0, 333.333, 0, 337.255, 0, 341.177, 0, 345.098, 0, 349.02, 0, 352.941, 0, 356.863, 0, 360.784, 0, 364.706, 0, 368.628, 0, 372.549, 0, 376.471, 0, 380.392, 0, 384.314, 0, 388.235, 0, 392.157, 0, 396.079, 0, 400, 0, 403.922, 0, 407.843, 0, 411.765, 0, 415.686, 0, 419.608, 0, 423.53, 0, 427.451, 0, 431.373, 0, 435.294, 0, 439.216, 0, 443.137, 0, 447.059, 0, 450.98, 0, 454.902, 0, 458.824, 0, 462.745, 0, 466.667, 0, 470.588, 0, 474.51, 0, 478.431, 0, 482.353, 0, 486.275, 0, 490.196, 0, 494.118, 0, 498.039, 0, 501.961, 0, 505.882, 0, 509.804, 0, 513.726, 0, 517.647, 0, 521.569, 0, 525.49, 0, 529.412, 0, 533.333, 0, 537.255, 0, 541.177, 0, 545.098, 0, 549.02, 0, 552.941, 0, 556.863, 0, 560.784, 0, 564.706, 0, 568.628, 0, 572.549, 0, 576.471, 0, 580.392, 0, 584.314, 0, 588.235, 0, 592.157, 0, 596.079, 0, 600, 0, 603.922, 0, 607.843, 0, 611.765, 0, 615.686, 0, 619.608, 0, 623.53, 0, 627.451, 0, 631.373, 0, 635.294, 0, 639.216, 0, 643.137, 0, 647.059, 0, 650.981, 0, 654.902, 0, 658.824, 0, 662.745, 0, 666.667, 0, 670.588, 0, 674.51, 0, 678.432, 0, 682.353, 0, 686.275, 0, 690.196, 0, 694.118, 0, 698.039, 0, 701.961, 0, 705.883, 0, 709.804, 0, 713.726, 0, 717.647, 0, 721.569, 0, 725.49, 0, 729.412, 0, 733.333, 0, 737.255, 0, 741.177, 0, 745.098, 0, 749.02, 0, 752.941, 0, 756.863, 0, 760.784, 0, 764.706, 0, 768.628, 0, 772.549, 0, 776.471, 0, 780.392, 0, 784.314, 0, 788.235, 0, 792.157, 0, 796.079, 0, 800, 0, 803.922, 0, 807.843, 0, 811.765, 0, 815.686, 0, 819.608, 0, 823.53, 0, 827.451, 0, 831.373, 0, 835.294, 0, 839.216, 0, 843.137, 0, 847.059, 0, 850.981, 0, 854.902, 0, 858.824, 0, 862.745, 0, 866.667, 0, 870.588, 0, 874.51, 0, 878.432, 0, 882.353, 0, 886.275, 0, 890.196, 0, 894.118, 0, 898.039, 0, 901.961, 0, 905.883, 0, 909.804, 0, 913.726, 0, 917.647, 0, 921.569, 0, 925.49, 0, 929.412, 0, 933.334, 0, 937.255, 0, 941.177, 0, 945.098, 0, 949.02, 0, 952.941, 0, 956.863, 0, 960.785, 0, 964.706, 0, 968.628, 0, 972.549, 0, 976.471, 0, 980.392, 0, 984.314, 0, 988.236, 0, 992.157, 0, 996.079, 0, 1000)
 closed = true
 width = 20.0
 texture_mode = 2
 joint_mode = 2
-round_precision = 16
+begin_cap_mode = 2
+end_cap_mode = 2
 antialiased = true
-script = ExtResource("2_fpe6o")
+script = ExtResource("3_kyqv0")
+target_rope_path = NodePath("Rope")
+position_mode = 0
+metadata/_custom_type_script = "uid://dfppmnngy2wx4"
 
-[node name="Line2D" type="Line2D" parent="."]
-points = PackedVector2Array(291, 239, 304, 316, 218, 317, 97, 370)
-width = 50.0
-texture = ExtResource("3_kyqv0")
-texture_mode = 1
-joint_mode = 2
+[node name="RopeHandle" type="Marker2D" parent="RopeLoop"]
+script = ExtResource("4_5h6nw")
+rope_path = NodePath("../Rope")
+metadata/_custom_type_script = "uid://1xluodkpnre3"
 
-[node name="Pin" parent="." instance=ExtResource("4_gdvn4")]
-position = Vector2(632, 85)
+[node name="Rope" type="Node2D" parent="RopeLoop"]
+script = ExtResource("4_kyqv0")
+num_segments = 255
+rope_length = 1000.0
+gravity = 0.0
+damping = 10.0
+render_line = false
+line_width = 20.0
+enable_collisions = true
+collision_radius = 10.0
+metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
+
+[node name="Camera2D" type="Camera2D" parent="."]
