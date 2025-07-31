@@ -2,9 +2,14 @@ extends CharacterBody2D
 
 var speed = 500.0
 var projectile_range = 1000.0
-var is_enemy = true
+var hits_enemies = true
+var hits_allies = true
 var damage = 0.0
-var distance = 0.0
+
+
+var distance_traveled = 0.0
+var targets_hit = 0
+
 
 func _ready() -> void:
 	pass
@@ -12,8 +17,11 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	velocity = Vector2.from_angle(rotation) * speed
-	distance += speed / 60
+	distance_traveled += speed / 60
 	move_and_slide()
 
-	if distance >= projectile_range:
+	if distance_traveled >= projectile_range:
+		queue_free()
+
+	if targets_hit > 0:
 		queue_free()

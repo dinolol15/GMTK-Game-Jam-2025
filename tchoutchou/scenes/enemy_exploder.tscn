@@ -12,7 +12,6 @@ scale = Vector2(0.33, 0.33)
 script = ExtResource("1_2regq")
 BASE_SPEED = 150.0
 BASE_DAMAGE = 20.0
-BASE_FIRERATE = 0.0
 AI_TYPE = "exploder"
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -33,3 +32,5 @@ polygon = PackedVector2Array(-32, -32, 32, 0, -32, 32)
 [node name="GunSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_hs1j0")
 pitch_scale = 1.25
+
+[connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

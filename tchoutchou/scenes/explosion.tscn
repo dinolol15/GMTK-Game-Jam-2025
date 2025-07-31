@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://d1hif16pr4cdj"]
+
+[ext_resource type="Script" uid="uid://bf606swgahnh" path="res://scripts/explosion.gd" id="1_nfeox"]
+[ext_resource type="Texture2D" uid="uid://c410c5a1uof8c" path="res://sprites/placeholder-explosion.png" id="2_aw4cw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3el85"]
+radius = 32.0
+
+[node name="Explosion" type="Area2D"]
+collision_layer = 6
+collision_mask = 0
+script = ExtResource("1_nfeox")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_aw4cw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3el85")
+debug_color = Color(0.836051, 0.387567, 0, 0.42)
