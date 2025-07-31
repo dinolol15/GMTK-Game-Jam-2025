@@ -1,0 +1,46 @@
+[gd_scene load_steps=10 format=3 uid="uid://h7ul73bxxghh"]
+
+[ext_resource type="Texture2D" uid="uid://c185w4i1qg0wv" path="res://sprites/placeholder-base.png" id="1_3mcwv"]
+[ext_resource type="Script" uid="uid://dqpk5v3pussrs" path="res://scripts/cargo_station.gd" id="1_f7pbp"]
+[ext_resource type="Script" uid="uid://dng8c0vst2yed" path="res://scripts/cargo_conversion.gd" id="2_jy1ot"]
+[ext_resource type="Shader" uid="uid://34qci366vmt0" path="res://shaders/range_circle.gdshader" id="2_qc8qe"]
+[ext_resource type="Texture2D" uid="uid://g7e76vkcri2m" path="res://sprites/icon.svg" id="3_ngcsm"]
+
+[sub_resource type="Resource" id="Resource_h0poe"]
+script = ExtResource("2_jy1ot")
+from_cargo = 0
+to_cargo = 1
+metadata/_custom_type_script = "uid://dng8c0vst2yed"
+
+[sub_resource type="Resource" id="Resource_jdtpp"]
+script = ExtResource("2_jy1ot")
+from_cargo = 1
+to_cargo = 0
+metadata/_custom_type_script = "uid://dng8c0vst2yed"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rvx7u"]
+radius = 128.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ngcsm"]
+shader = ExtResource("2_qc8qe")
+shader_parameter/radius = 128.0
+shader_parameter/fill_color = Color(0, 1, 1, 1)
+
+[node name="MetalStation" type="Area2D"]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_f7pbp")
+cargo_conversions = Array[ExtResource("2_jy1ot")]([SubResource("Resource_h0poe"), SubResource("Resource_jdtpp")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rvx7u")
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+material = SubResource("ShaderMaterial_ngcsm")
+texture = ExtResource("3_ngcsm")
+polygon = PackedVector2Array(-1000, -1000, -1000, 1000, 1000, 1000, 1000, -1000)
+uv = PackedVector2Array(0, 0, 0, 128, 128, 128, 128, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0, 1, 1, 1)
+texture = ExtResource("1_3mcwv")
