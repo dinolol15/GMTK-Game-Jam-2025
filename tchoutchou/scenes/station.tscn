@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://h7ul73bxxghh"]
+
+[ext_resource type="Script" uid="uid://dqpk5v3pussrs" path="res://scripts/station.gd" id="1_f7pbp"]
+[ext_resource type="PackedScene" uid="uid://bv77yhkdlgrpb" path="res://scenes/range_circle.tscn" id="3_jy1ot"]
+[ext_resource type="PackedScene" uid="uid://vco1fanc78i5" path="res://scenes/station_cargo_conversion_display.tscn" id="4_gafma"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rvx7u"]
+radius = 128.0
+
+[node name="Station" type="Area2D" node_paths=PackedStringArray("station_cargo_conversion_display", "cooldown_timer")]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_f7pbp")
+station_cargo_conversion_display = NodePath("StationCargoConversionDisplay")
+cooldown_timer = NodePath("CooldownTimer")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rvx7u")
+
+[node name="RangeCircle" parent="." instance=ExtResource("3_jy1ot")]
+
+[node name="StationCargoConversionDisplay" parent="." instance=ExtResource("4_gafma")]
+position = Vector2(0, -90)
+cooldown_progress = 0.0
+
+[node name="CooldownTimer" type="Timer" parent="."]
+one_shot = true

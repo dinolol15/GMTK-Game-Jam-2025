@@ -1,0 +1,24 @@
+[gd_scene load_steps=5 format=3 uid="uid://bv77yhkdlgrpb"]
+
+[ext_resource type="Shader" uid="uid://34qci366vmt0" path="res://shaders/range_circle.gdshader" id="1_7bfeb"]
+[ext_resource type="Texture2D" uid="uid://g7e76vkcri2m" path="res://sprites/icon.svg" id="2_28rw0"]
+[ext_resource type="Script" uid="uid://braiopoq1dl2i" path="res://scripts/range_circle.gd" id="3_3nbfa"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ngcsm"]
+shader = ExtResource("1_7bfeb")
+shader_parameter/size = 1000.0
+shader_parameter/circle_thickness = 10.0
+shader_parameter/rays = 8.0
+shader_parameter/fill_alpha = 0.5
+shader_parameter/circle_alpha = 0.75
+shader_parameter/animation_speed = 0.5
+
+[node name="RangeCircle" type="Polygon2D"]
+z_index = -1
+material = SubResource("ShaderMaterial_ngcsm")
+instance_shader_parameters/fill_color = Color(0, 1, 1, 1)
+instance_shader_parameters/radius = 128.0
+texture = ExtResource("2_28rw0")
+polygon = PackedVector2Array(-1000, -1000, -1000, 1000, 1000, 1000, 1000, -1000)
+uv = PackedVector2Array(0, 0, 0, 128, 128, 128, 128, 0)
+script = ExtResource("3_3nbfa")

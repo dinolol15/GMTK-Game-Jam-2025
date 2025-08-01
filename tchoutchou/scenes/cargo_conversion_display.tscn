@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://cyah77wtvb0ws"]
+
+[ext_resource type="Script" uid="uid://dn08arvdsvmw" path="res://scripts/cargo_conversion_display.gd" id="1_ypo3k"]
+[ext_resource type="Texture2D" uid="uid://d2bno6be8rjmt" path="res://sprites/arrow.png" id="2_mm0rr"]
+[ext_resource type="PackedScene" uid="uid://cmdifgmpw4apj" path="res://scenes/cargo_sprite.tscn" id="3_71vrc"]
+
+[node name="CargoConversionDisplay" type="Node2D" node_paths=PackedStringArray("from_cargo_sprite", "to_cargo_sprite")]
+script = ExtResource("1_ypo3k")
+from_cargo_sprite = NodePath("FromCargoSprite")
+to_cargo_sprite = NodePath("ToCargoSprite")
+
+[node name="ArrowSprite" type="Sprite2D" parent="."]
+z_index = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_mm0rr")
+
+[node name="FromCargoSprite" parent="." instance=ExtResource("3_71vrc")]
+z_index = 1
+position = Vector2(-52, 0)
+
+[node name="ToCargoSprite" parent="." instance=ExtResource("3_71vrc")]
+z_index = 1
+position = Vector2(52, 0)

@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://bs1qqirt8ptyl"]
+
+[ext_resource type="Shader" uid="uid://dbqm6ji1nciii" path="res://shaders/progress_circle.gdshader" id="1_btjfp"]
+[ext_resource type="Texture2D" uid="uid://g7e76vkcri2m" path="res://sprites/icon.svg" id="2_bjor1"]
+[ext_resource type="Script" uid="uid://t5wl87k8ymil" path="res://scripts/progress_circle.gd" id="3_wha83"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5csxi"]
+shader = ExtResource("1_btjfp")
+shader_parameter/fill_color = Color(0, 1, 0, 1)
+shader_parameter/circle_thickness = 0.4
+
+[node name="ProgressCircle" type="Polygon2D"]
+z_index = 1
+material = SubResource("ShaderMaterial_5csxi")
+instance_shader_parameters/progress = 0.0
+texture = ExtResource("2_bjor1")
+polygon = PackedVector2Array(-24, -24, -24, 24, 24, 24, 24, -24)
+uv = PackedVector2Array(0, 0, 0, 128, 128, 128, 128, 0)
+script = ExtResource("3_wha83")

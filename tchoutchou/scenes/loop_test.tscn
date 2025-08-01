@@ -1,15 +1,35 @@
-[gd_scene load_steps=6 format=3 uid="uid://rtoavrh5dxr"]
+[gd_scene load_steps=10 format=3 uid="uid://rtoavrh5dxr"]
 
 [ext_resource type="PackedScene" uid="uid://7axpi421xeat" path="res://scenes/loop_path.tscn" id="1_07qnl"]
-[ext_resource type="PackedScene" uid="uid://h7ul73bxxghh" path="res://scenes/metal_station.tscn" id="1_bkf63"]
-[ext_resource type="PackedScene" uid="uid://tegrvon8nml8" path="res://scenes/locomotive.tscn" id="2_lxbkj"]
+[ext_resource type="PackedScene" uid="uid://h7ul73bxxghh" path="res://scenes/station.tscn" id="1_bkf63"]
+[ext_resource type="PackedScene" uid="uid://b128xx41dufbg" path="res://scenes/locomotive.tscn" id="2_lxbkj"]
+[ext_resource type="Script" uid="uid://dng8c0vst2yed" path="res://scripts/cargo_conversion.gd" id="2_tldlq"]
 [ext_resource type="PackedScene" uid="uid://c6hnlxdkiyqeh" path="res://scenes/wagon.tscn" id="3_bkf63"]
+[ext_resource type="Texture2D" uid="uid://c185w4i1qg0wv" path="res://sprites/placeholders/placeholder-base.png" id="3_rgicp"]
 [ext_resource type="PackedScene" uid="uid://21djceuff8ui" path="res://scenes/pin.tscn" id="4_lxbkj"]
+
+[sub_resource type="Resource" id="Resource_qa7hb"]
+script = ExtResource("2_tldlq")
+from_cargo = 0
+to_cargo = 1
+cooldown = 3.0
+metadata/_custom_type_script = "uid://dng8c0vst2yed"
+
+[sub_resource type="Resource" id="Resource_vs5sm"]
+script = ExtResource("2_tldlq")
+from_cargo = 1
+to_cargo = 0
+cooldown = 0.0
+metadata/_custom_type_script = "uid://dng8c0vst2yed"
 
 [node name="LoopTest" type="Node2D"]
 
-[node name="MetalStation" parent="." instance=ExtResource("1_bkf63")]
+[node name="Station" parent="." instance=ExtResource("1_bkf63")]
 position = Vector2(300, -300)
+cargo_conversions = Array[ExtResource("2_tldlq")]([SubResource("Resource_qa7hb"), SubResource("Resource_vs5sm")])
+
+[node name="Sprite2D" type="Sprite2D" parent="Station"]
+texture = ExtResource("3_rgicp")
 
 [node name="Pin" parent="." instance=ExtResource("4_lxbkj")]
 

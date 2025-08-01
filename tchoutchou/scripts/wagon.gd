@@ -11,8 +11,5 @@ extends PathFollow2D
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area is CargoStation:
-		for conversion: CargoConversion in area.cargo_conversions:
-			if cargo == conversion.from_cargo:
-				cargo = conversion.to_cargo
-				break
+	if area is Station:
+		cargo = area.try_convert(cargo)

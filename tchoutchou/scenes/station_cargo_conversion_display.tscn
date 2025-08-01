@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://vco1fanc78i5"]
+
+[ext_resource type="Script" uid="uid://beyo20js2ldd7" path="res://scripts/station_cargo_conversion_display.gd" id="1_5lccc"]
+[ext_resource type="PackedScene" uid="uid://bs1qqirt8ptyl" path="res://scenes/progress_circle.tscn" id="2_eseex"]
+
+[node name="StationCargoConversionDisplay" type="Node2D" node_paths=PackedStringArray("sprite_root", "progress_circle")]
+script = ExtResource("1_5lccc")
+sprite_root = NodePath("SpriteRoot")
+progress_circle = NodePath("ProgressCircle")
+
+[node name="SpriteRoot" type="Node2D" parent="."]
+
+[node name="ProgressCircle" parent="." instance=ExtResource("2_eseex")]

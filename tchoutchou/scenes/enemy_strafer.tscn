@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cfbf28ehdhg35"]
 
 [ext_resource type="Script" uid="uid://b6c8nc5cl45mx" path="res://scripts/enemy.gd" id="1_8fiay"]
-[ext_resource type="Texture2D" uid="uid://531prnm3uw7k" path="res://sprites/placeholder-enemy.png" id="2_w0u3a"]
+[ext_resource type="Texture2D" uid="uid://531prnm3uw7k" path="res://sprites/placeholders/placeholder-enemy.png" id="2_w0u3a"]
 [ext_resource type="AudioStream" uid="uid://dohxqoawgryqp" path="res://plink_sfx.tres" id="3_w0u3a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4gyqm"]

@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://rtoavrh5dxr"]
+
+[ext_resource type="PackedScene" uid="uid://7axpi421xeat" path="res://scenes/loop_path.tscn" id="1_07qnl"]
+[ext_resource type="PackedScene" uid="uid://h7ul73bxxghh" path="res://scenes/smelting_station.tscn" id="1_bkf63"]
+[ext_resource type="PackedScene" uid="uid://b128xx41dufbg" path="res://scenes/locomotive.tscn" id="2_lxbkj"]
+[ext_resource type="PackedScene" uid="uid://c6hnlxdkiyqeh" path="res://scenes/wagon.tscn" id="3_bkf63"]
+[ext_resource type="PackedScene" uid="uid://21djceuff8ui" path="res://scenes/pin.tscn" id="4_lxbkj"]
+
+[node name="LoopTest" type="Node2D"]
+
+[node name="SmeltingStation" parent="." instance=ExtResource("1_bkf63")]
+position = Vector2(300, -300)
+
+[node name="Pin" parent="." instance=ExtResource("4_lxbkj")]
+
+[node name="LoopPath" parent="." instance=ExtResource("1_07qnl")]
+
+[node name="Locomotive" parent="LoopPath" node_paths=PackedStringArray("wagons") instance=ExtResource("2_lxbkj")]
+wagons = [NodePath("../Wagon"), NodePath("../Wagon2")]
+
+[node name="Wagon" parent="LoopPath" instance=ExtResource("3_bkf63")]
+
+[node name="Wagon2" parent="LoopPath" instance=ExtResource("3_bkf63")]
+
+[node name="Camera2D" type="Camera2D" parent="."]

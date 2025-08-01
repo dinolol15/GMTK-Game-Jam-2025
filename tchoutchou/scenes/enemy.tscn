@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://cfbf28ehdhg35"]
 
-[ext_resource type="Texture2D" uid="uid://531prnm3uw7k" path="res://sprites/placeholder-enemy.png" id="1_7k104"]
+[ext_resource type="Texture2D" uid="uid://531prnm3uw7k" path="res://sprites/placeholders/placeholder-enemy.png" id="1_7k104"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4gyqm"]
 size = Vector2(32, 32)
