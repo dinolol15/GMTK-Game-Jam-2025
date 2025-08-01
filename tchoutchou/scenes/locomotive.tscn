@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://tegrvon8nml8"]
+[gd_scene load_steps=4 format=3 uid="uid://b128xx41dufbg"]
 
-[ext_resource type="Script" uid="uid://ynwvkjawtruu" path="res://scripts/locomotive.gd" id="1_b570b"]
+[ext_resource type="Script" path="res://scripts/locomotive.gd" id="1_b570b"]
 [ext_resource type="Texture2D" uid="uid://bvlrb1mm252pp" path="res://sprites/placeholder-loco.png" id="2_rkiwd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b570b"]

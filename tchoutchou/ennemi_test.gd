@@ -1,14 +1,11 @@
 extends CharacterBody2D
 
-const speed = 100.0
+const speed = 50.0
 
 @export var player: CharacterBody2D
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 
 func _ready():
-	navigation_agent.avoidance_enabled = true
-	navigation_agent.avoidance_layers = 1
-	navigation_agent.avoidance_mask = 2
 	make_path()
 
 func _physics_process(_delta: float):
