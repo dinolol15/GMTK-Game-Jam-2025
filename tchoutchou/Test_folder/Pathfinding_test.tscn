@@ -61,7 +61,7 @@ position = Vector2(0, 0.5)
 shape = SubResource("CircleShape2D_rob4q")
 
 [node name="Timer" type="Timer" parent="ennemi_test"]
-wait_time = 0.2
+wait_time = 0.1
 autostart = true
 
 [node name="Player" type="CharacterBody2D" parent="."]
