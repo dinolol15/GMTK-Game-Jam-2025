@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://cilejwrn0sfvw"]
+[gd_scene load_steps=12 format=3 uid="uid://cilejwrn0sfvw"]
 
+[ext_resource type="Script" uid="uid://cy70i2lqpc3ty" path="res://Test_folder/pathfinding_test.gd" id="1_fqop1"]
 [ext_resource type="Script" uid="uid://c4n8drsmotpco" path="res://ennemi_test.gd" id="1_ykhgd"]
 [ext_resource type="Texture2D" uid="uid://531prnm3uw7k" path="res://sprites/placeholders/placeholder-enemy.png" id="2_rob4q"]
 [ext_resource type="Texture2D" uid="uid://g7e76vkcri2m" path="res://sprites/icon.svg" id="3_fqop1"]
@@ -31,6 +32,7 @@ navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_fqop1")
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_fqop1")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(298, 207)
@@ -59,7 +61,7 @@ position = Vector2(0, 0.5)
 shape = SubResource("CircleShape2D_rob4q")
 
 [node name="Timer" type="Timer" parent="ennemi_test"]
-wait_time = 0.2
+wait_time = 0.1
 autostart = true
 
 [node name="Player" type="CharacterBody2D" parent="."]

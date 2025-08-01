@@ -1,0 +1,22 @@
+[gd_scene load_steps=5 format=3 uid="uid://cd00ibsnu8rdw"]
+
+[ext_resource type="Script" uid="uid://cnobkd5dyd8t0" path="res://Test_folder/map_test.gd" id="1_6mp4k"]
+[ext_resource type="Texture2D" uid="uid://1g2820lyfqpe" path="res://sprites/test tilemap.png" id="1_nsgwi"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6mp4k"]
+texture = ExtResource("1_nsgwi")
+0:0/0 = 0
+1:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ibn2e"]
+sources/0 = SubResource("TileSetAtlasSource_6mp4k")
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_6mp4k")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_ibn2e")
+format = 2
+layer_0/tile_data = PackedInt32Array(-65536, 0, 0, -2, 0, 0, -4, 0, 0, -65534, 0, 0, -65532, 0, 0, -65530, 0, 0, -65528, 0, 0, -6, 0, 0, -8, 0, 0)
+
+[node name="Camera2D" type="Camera2D" parent="."]
