@@ -15,7 +15,7 @@ func _ready() -> void:
 	pass
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	velocity = Vector2.from_angle(rotation) * speed
 	distance_traveled += speed / 60
 	move_and_slide()

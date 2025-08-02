@@ -13,7 +13,19 @@ func _ready() -> void:
 	pass
 
 
-func _process(delta: float) -> void:
+func process_hit(attack: Node2D):
+	#play_damage_sound = true
+	health -= attack.damage
+	attack.targets_hit += 1
+	if health <= 0:
+		#get_node("Hitbox/CollisionShape2D").set_deferred("disabled", true)
+		#get_node("PhysicsCollider").set_deferred("disabled", true)
+		#hide()
+		#is_alive = false
+		queue_free()
+
+
+func _process(_delta: float) -> void:
 	$Healthbar.text = str(health)
 	#if play_damage_sound:
 		#$DamageSFX.play()
@@ -23,14 +35,9 @@ func _process(delta: float) -> void:
 
 
 func _on_hitbox_body_entered(attack: Node2D) -> void:
-	if not attack.hits_allies:
-		return
+	if attack.hits_allies:
+		process_hit(attack)
 
-	#play_damage_sound = true
-	health -= attack.damage
-	attack.targets_hit += 1
-	if health <= 0:
-		get_node("Hitbox/CollisionShape2D").set_deferred("disabled", true)
-		get_node("PhysicsCollider").set_deferred("disabled", true)
-		hide()
-		is_alive = false
+func _on_hitbox_area_entered(attack: Node2D) -> void:
+	if attack.hits_allies:
+		process_hit(attack)

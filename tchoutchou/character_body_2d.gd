@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+# Please move to res://scripts
+
 @export var speed := 150.0
 
 func _physics_process(delta):
