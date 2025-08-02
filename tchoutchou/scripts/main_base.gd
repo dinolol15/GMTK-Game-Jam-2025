@@ -18,10 +18,11 @@ func process_hit(attack: Node2D):
 	health -= attack.damage
 	attack.targets_hit += 1
 	if health <= 0:
-		get_node("Hitbox/CollisionShape2D").set_deferred("disabled", true)
-		get_node("PhysicsCollider").set_deferred("disabled", true)
-		hide()
-		is_alive = false
+		#get_node("Hitbox/CollisionShape2D").set_deferred("disabled", true)
+		#get_node("PhysicsCollider").set_deferred("disabled", true)
+		#hide()
+		#is_alive = false
+		queue_free()
 
 
 func _process(delta: float) -> void:

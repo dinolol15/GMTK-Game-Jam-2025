@@ -1,5 +1,7 @@
 extends CharacterBody2D
 
+# Please move to res://scripts
+
 const speed = 50.0
 
 @export var player: CharacterBody2D
@@ -15,7 +17,7 @@ func _physics_process(_delta: float):
 
 func make_path():
 	navigation_agent.target_position = player.global_position
-	
+
 
 func _on_timer_timeout():
 	make_path()

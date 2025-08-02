@@ -17,6 +17,7 @@ var counter = randi_range(0, 60)
 
 var health = BASE_HEALTH
 var attack_cooldown = int(60 / BASE_FIRERATE) if BASE_FIRERATE >= 0 else -1
+var has_target = false
 
 var target: Node2D
 var target_direction: Vector2
@@ -69,37 +70,52 @@ func process_hit(attack: Node2D):
 		queue_free()
 
 
+func strafer_ai_tick():
+	if not has_target:
+		# TODO: implement target switching and priorities
+		return
+
+	# Used desmos to find a nice equation
+	# y=-\arctan\left(S\left(x-R_{d}\right)\right)+\frac{\pi}{2}  ## angle offset as a function of distance
+	# It makes the enemy settle into a circle around the target, without managing any states or things like that
+	rotation = target_direction.angle() - atan(STRAFE_SHARPNESS * (get_distance_to_target() - ATTACK_DISTANCE * 0.8)) + PI/2
+	velocity = BASE_SPEED * Vector2.from_angle(rotation)
+
+	if counter % attack_cooldown == 0 and target.is_alive and target_distance <= ATTACK_DISTANCE:
+		shoot(BASE_DAMAGE, false, true)
+
+
+func exploder_ai_tick():
+	if not has_target:
+		return
+	rotation = target_direction.angle()
+	velocity = BASE_SPEED * target_direction
+
+	if $Trigger.has_overlapping_bodies() or $Trigger.has_overlapping_areas():
+		explode(BASE_DAMAGE, true, true)
+
+	if target_distance < ATTACK_DISTANCE:
+		velocity *= SPEED_MULTIPLIER
+
+
 func _ready() -> void:
 	target = get_node("../MainBase")
+	has_target = true
 
 
-func _physics_process(delta: float) -> void:
-	target_direction = get_direction_vector(target.position)
-	target_distance = get_distance_to_target()
+func _physics_process(_delta: float) -> void:
+	if is_instance_valid(target):
+		target_direction = get_direction_vector(target.position)
+		target_distance = get_distance_to_target()
+	else:
+		has_target = false
 
 	# Handle the artificial "intelligence"
 	match ENEMY_TYPE:
 		"strafer":
-			# Used desmos to find a nice equation
-			# y=-\arctan\left(S\left(x-R_{d}\right)\right)+\frac{\pi}{2}  ## angle offset as a function of distance
-			# It makes the enemy settle into a circle around the target, without managing any states or things like that
-			rotation = target_direction.angle() - atan(STRAFE_SHARPNESS * (get_distance_to_target() - ATTACK_DISTANCE * 0.8)) + PI/2
-			velocity = BASE_SPEED * Vector2.from_angle(rotation)
-
-			if counter % attack_cooldown == 0 and target.is_alive and target_distance <= ATTACK_DISTANCE:
-				shoot(BASE_DAMAGE, false, true)
-
+			strafer_ai_tick()
 		"exploder":
-			rotation = target_direction.angle()
-			velocity = BASE_SPEED * target_direction
-
-			if $Trigger.has_overlapping_bodies() or $Trigger.has_overlapping_areas():
-				explode(BASE_DAMAGE, true, true)
-
-			if target_distance < ATTACK_DISTANCE:
-				velocity *= SPEED_MULTIPLIER
-
-
+			exploder_ai_tick()
 
 	counter += 1
 	move_and_slide()
