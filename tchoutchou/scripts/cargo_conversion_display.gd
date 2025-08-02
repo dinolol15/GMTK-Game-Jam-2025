@@ -9,6 +9,7 @@ extends Node2D
 		cargo_conversion = value
 		if cargo_conversion != null:
 			cargo_conversion.changed.connect(_on_cargo_conversion_changed)
+		_on_cargo_conversion_changed()
 
 @export var from_cargo_sprite: CargoSprite
 @export var to_cargo_sprite: CargoSprite
@@ -17,7 +18,3 @@ extends Node2D
 func _on_cargo_conversion_changed() -> void:
 	from_cargo_sprite.cargo = cargo_conversion.from_cargo
 	to_cargo_sprite.cargo = cargo_conversion.to_cargo
-
-
-func _ready() -> void:
-	call_deferred("_on_cargo_conversion_changed")

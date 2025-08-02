@@ -4,18 +4,20 @@
 [ext_resource type="PackedScene" uid="uid://bv77yhkdlgrpb" path="res://scenes/range_circle.tscn" id="3_jy1ot"]
 [ext_resource type="PackedScene" uid="uid://vco1fanc78i5" path="res://scenes/station_cargo_conversion_display.tscn" id="4_gafma"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rvx7u"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_3ic5c"]
 radius = 128.0
 
-[node name="Station" type="Area2D" node_paths=PackedStringArray("station_cargo_conversion_display", "cooldown_timer")]
+[node name="Station" type="Area2D" node_paths=PackedStringArray("collision_shape", "range_circle", "station_cargo_conversion_display", "cooldown_timer")]
 collision_layer = 16
 collision_mask = 0
 script = ExtResource("1_f7pbp")
+collision_shape = NodePath("CollisionShape2D")
+range_circle = NodePath("RangeCircle")
 station_cargo_conversion_display = NodePath("StationCargoConversionDisplay")
 cooldown_timer = NodePath("CooldownTimer")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_rvx7u")
+shape = SubResource("CircleShape2D_3ic5c")
 
 [node name="RangeCircle" parent="." instance=ExtResource("3_jy1ot")]
 

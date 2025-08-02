@@ -19,7 +19,7 @@ static var cargo_conversion_display_scene = preload("res://scenes/cargo_conversi
 var previous_cargo_conversions = []
 
 
-func _on_cargo_conversions_changed() -> void:
+func update_cargo_conversion_displays() -> void:
 	var num_cargo_conversions = cargo_conversions.size()
 	var new_cargo_conversion_display: CargoConversionDisplay
 	for i in range(max(num_cargo_conversions, sprite_root.get_child_count())):
@@ -35,6 +35,6 @@ func _on_cargo_conversions_changed() -> void:
 
 
 func _process(_delta) -> void:
-	if previous_cargo_conversions != cargo_conversions:
-		_on_cargo_conversions_changed()
+	if cargo_conversions != previous_cargo_conversions:
+		update_cargo_conversion_displays()
 		previous_cargo_conversions = cargo_conversions.duplicate()
