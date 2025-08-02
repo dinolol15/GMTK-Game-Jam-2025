@@ -1,35 +1,49 @@
-[gd_scene load_steps=10 format=3 uid="uid://rtoavrh5dxr"]
+[gd_scene load_steps=13 format=3 uid="uid://rtoavrh5dxr"]
 
 [ext_resource type="PackedScene" uid="uid://7axpi421xeat" path="res://scenes/loop_path.tscn" id="1_07qnl"]
-[ext_resource type="PackedScene" uid="uid://h7ul73bxxghh" path="res://scenes/station.tscn" id="1_bkf63"]
 [ext_resource type="PackedScene" uid="uid://b128xx41dufbg" path="res://scenes/locomotive.tscn" id="2_lxbkj"]
+[ext_resource type="PackedScene" uid="uid://b7bhq6jx15vxy" path="res://scenes/stations/iron_ore_station.tscn" id="2_rgicp"]
 [ext_resource type="Script" uid="uid://dng8c0vst2yed" path="res://scripts/cargo_conversion.gd" id="2_tldlq"]
 [ext_resource type="PackedScene" uid="uid://c6hnlxdkiyqeh" path="res://scenes/wagon.tscn" id="3_bkf63"]
-[ext_resource type="Texture2D" uid="uid://wlxkbcpp2r3d" path="res://sprites/placeholders/placeholder-base.png" id="3_rgicp"]
 [ext_resource type="PackedScene" uid="uid://21djceuff8ui" path="res://scenes/pin.tscn" id="4_lxbkj"]
+[ext_resource type="PackedScene" uid="uid://bhvkf3k6fk1r3" path="res://scenes/stations/smelting_station.tscn" id="5_tldlq"]
+[ext_resource type="PackedScene" uid="uid://didp6cj8fubkr" path="res://scenes/stations/ammo_station.tscn" id="5_vs5sm"]
+[ext_resource type="PackedScene" uid="uid://b5lqiiiwhqd5r" path="res://scenes/stations/coal_station.tscn" id="6_rgicp"]
 
-[sub_resource type="Resource" id="Resource_qa7hb"]
+[sub_resource type="Resource" id="Resource_4vr0y"]
 script = ExtResource("2_tldlq")
-from_cargo = 0
-to_cargo = 1
-cooldown = 3.0
-metadata/_custom_type_script = "uid://dng8c0vst2yed"
+from_cargo = 5
+to_cargo = 0
+cooldown = 0.0
 
 [sub_resource type="Resource" id="Resource_vs5sm"]
 script = ExtResource("2_tldlq")
-from_cargo = 1
+from_cargo = 5
 to_cargo = 0
 cooldown = 0.0
-metadata/_custom_type_script = "uid://dng8c0vst2yed"
+
+[sub_resource type="Resource" id="Resource_s3ac5"]
+script = ExtResource("2_tldlq")
+from_cargo = 7
+to_cargo = 0
+cooldown = 0.0
 
 [node name="LoopTest" type="Node2D"]
 
-[node name="Station" parent="." instance=ExtResource("1_bkf63")]
-position = Vector2(300, -300)
-cargo_conversions = Array[ExtResource("2_tldlq")]([SubResource("Resource_qa7hb"), SubResource("Resource_vs5sm")])
+[node name="CoalStation" parent="." instance=ExtResource("6_rgicp")]
+position = Vector2(-352, -216)
 
-[node name="Sprite2D" type="Sprite2D" parent="Station"]
-texture = ExtResource("3_rgicp")
+[node name="IronOreStation" parent="." instance=ExtResource("2_rgicp")]
+position = Vector2(-252, 221)
+
+[node name="SmeltingStation" parent="." instance=ExtResource("5_tldlq")]
+position = Vector2(294, -193)
+cargo_conversions = Array[ExtResource("2_tldlq")]([SubResource("Resource_4vr0y")])
+range_circle_color = Color(0, 1, 1, 1)
+
+[node name="AmmoStation" parent="." instance=ExtResource("5_vs5sm")]
+position = Vector2(356, 249)
+cargo_conversions = Array[ExtResource("2_tldlq")]([SubResource("Resource_vs5sm"), SubResource("Resource_s3ac5")])
 
 [node name="Pin" parent="." instance=ExtResource("4_lxbkj")]
 
