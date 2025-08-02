@@ -13,11 +13,11 @@ radius = 24.0
 [node name="Enemy" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_2regq")
-BASE_SPEED = 150.0
-BASE_DAMAGE = 20.0
-BASE_FIRERATE = 0.0
-ATTACK_DISTANCE = 200.0
-ENEMY_TYPE = "exploder"
+base_health = 10.0
+base_speed = 150.0
+base_damage = 20.0
+base_firerate = 0.0
+enemy_type = "exploder"
 
 [node name="Sprite" type="Sprite2D" parent="."]
 position = Vector2(2, 0)
@@ -29,8 +29,8 @@ scale = Vector2(0.33, 0.33)
 shape = SubResource("RectangleShape2D_4gyqm")
 
 [node name="Hitbox" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 4
+collision_layer = 4
+collision_mask = 32
 
 [node name="Collider" type="CollisionPolygon2D" parent="Hitbox"]
 position = Vector2(2, 0)
