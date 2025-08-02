@@ -10,7 +10,7 @@ func _ready() -> void:
 	pass
 
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if counter % 120 == 0:
 		var enemy_instance = strafer.instantiate()
 

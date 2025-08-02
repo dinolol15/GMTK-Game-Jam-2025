@@ -25,7 +25,7 @@ func process_hit(attack: Node2D):
 		queue_free()
 
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	$Healthbar.text = str(health)
 	#if play_damage_sound:
 		#$DamageSFX.play()
