@@ -1,0 +1,64 @@
+[gd_scene load_steps=7 format=3 uid="uid://ywkdsdtdpl6t"]
+
+[ext_resource type="Script" uid="uid://cen3mxqovc07j" path="res://scripts/turret.gd" id="1_6fjxm"]
+[ext_resource type="Texture2D" uid="uid://coi2if4bvur7k" path="res://sprites/placeholders/placeholder-turret-gun.png" id="1_x3mc5"]
+[ext_resource type="Texture2D" uid="uid://b0p05ih24hrvw" path="res://sprites/placeholders/placeholder-turret-flamethrower.png" id="2_dirdf"]
+[ext_resource type="Texture2D" uid="uid://ji1rtd3jhbyo" path="res://sprites/placeholders/placeholder-turret-laser.png" id="4_mqfwu"]
+[ext_resource type="Texture2D" uid="uid://d2f5rn5n0newx" path="res://sprites/placeholders/placeholder-turret-rocket.png" id="5_0dv4j"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tg0ex"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dirdf")
+}],
+"loop": true,
+"name": &"flamethrower",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_x3mc5")
+}],
+"loop": true,
+"name": &"gun",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_mqfwu")
+}],
+"loop": true,
+"name": &"laser",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_0dv4j")
+}],
+"loop": true,
+"name": &"rocket",
+"speed": 5.0
+}]
+
+[node name="Turret" type="Node2D"]
+script = ExtResource("1_6fjxm")
+
+[node name="Sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tg0ex")
+animation = &"rocket"
+
+[node name="GunMuzzle" type="Node2D" parent="."]
+position = Vector2(26, 0)
+
+[node name="LaserMuzzle" type="Node2D" parent="."]
+position = Vector2(17, 0)
+
+[node name="RocketMuzzle" type="Node2D" parent="."]
+position = Vector2(23, 0)
+
+[node name="RocketBackblast" type="Node2D" parent="."]
+position = Vector2(-23, 0)
+
+[node name="FlamethrowerMuzzle" type="Node2D" parent="."]
+position = Vector2(28, 0)

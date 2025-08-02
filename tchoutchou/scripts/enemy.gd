@@ -1,22 +1,22 @@
 extends CharacterBody2D
 
 
-@export var BASE_HEALTH = 10.0
-@export var BASE_SPEED = 50.0
-@export var SPEED_MULTIPLIER = 2.0      # How much the enemy's speed will change when some condition is met (depends on enemy type)
-@export var BASE_DAMAGE = 2.0           # How much damage is dealt by each attack
-@export var BASE_FIRERATE = 1.0         # Hz; how often the enemy will attack
-@export var ATTACK_DISTANCE = 250.0     # units; distance to the target at which the enemy will start to attack
-@export var ENEMY_TYPE = "strafer"      # strafer, exploder
-const STRAFE_SHARPNESS = 0.02           # used for the AI; don't worry about it
+@export var base_health = 30.0
+@export var base_speed = 50.0
+@export var speed_multiplier = 2.0      # How much the enemy's speed will change when some condition is met (depends on enemy type)
+@export var base_damage = 2.0           # How much damage is dealt by each attack
+@export var base_firerate = 1.0         # Hz; how often the enemy will attack
+@export var attack_distance = 250.0     # units; distance to the target at which the enemy will start to attack
+@export var enemy_type = "strafer"      # strafer, exploder
+const strafe_sharpness = 0.02           # used for the AI; don't worry about it
 
 
 var projectile = preload("res://scenes/bullet.tscn")
 var explosion = preload("res://scenes/explosion.tscn")
 var counter = randi_range(0, 60)
 
-var health = BASE_HEALTH
-var attack_cooldown = int(60 / BASE_FIRERATE) if BASE_FIRERATE >= 0 else -1
+var health = base_health
+var attack_cooldown = int(60 / base_firerate) if base_firerate >= 0 else -1
 var has_target = false
 
 var target: Node2D
@@ -78,24 +78,24 @@ func strafer_ai_tick():
 	# Used desmos to find a nice equation
 	# y=-\arctan\left(S\left(x-R_{d}\right)\right)+\frac{\pi}{2}  ## angle offset as a function of distance
 	# It makes the enemy settle into a circle around the target, without managing any states or things like that
-	rotation = target_direction.angle() - atan(STRAFE_SHARPNESS * (get_distance_to_target() - ATTACK_DISTANCE * 0.8)) + PI/2
-	velocity = BASE_SPEED * Vector2.from_angle(rotation)
+	rotation = target_direction.angle() - atan(strafe_sharpness * (get_distance_to_target() - attack_distance * 0.8)) + PI/2
+	velocity = base_speed * Vector2.from_angle(rotation)
 
-	if counter % attack_cooldown == 0 and target.is_alive and target_distance <= ATTACK_DISTANCE:
-		shoot(BASE_DAMAGE, false, true)
+	if counter % attack_cooldown == 0 and target.is_alive and target_distance <= attack_distance:
+		shoot(base_damage, false, true)
 
 
 func exploder_ai_tick():
 	if not has_target:
 		return
 	rotation = target_direction.angle()
-	velocity = BASE_SPEED * target_direction
+	velocity = base_speed * target_direction
 
 	if $Trigger.has_overlapping_bodies() or $Trigger.has_overlapping_areas():
-		explode(BASE_DAMAGE, true, true)
+		explode(base_damage, true, true)
 
-	if target_distance < ATTACK_DISTANCE:
-		velocity *= SPEED_MULTIPLIER
+	if target_distance < attack_distance:
+		velocity *= speed_multiplier
 
 
 func _ready() -> void:
@@ -111,7 +111,7 @@ func _physics_process(_delta: float) -> void:
 		has_target = false
 
 	# Handle the artificial "intelligence"
-	match ENEMY_TYPE:
+	match enemy_type:
 		"strafer":
 			strafer_ai_tick()
 		"exploder":

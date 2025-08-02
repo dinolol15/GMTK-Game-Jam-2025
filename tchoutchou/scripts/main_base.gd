@@ -1,9 +1,9 @@
 extends StaticBody2D
 
 
-const BASE_HEALTH = 1000.0
+const base_health = 1000.0
 
-var health = BASE_HEALTH
+var health = base_health
 var is_alive = true
 var play_damage_sound = false
 var damage_sfx_cooldown = 0
