@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://b128xx41dufbg" path="res://scenes/locomotive.tscn" id="2_lxbkj"]
 [ext_resource type="Script" uid="uid://dng8c0vst2yed" path="res://scripts/cargo_conversion.gd" id="2_tldlq"]
 [ext_resource type="PackedScene" uid="uid://c6hnlxdkiyqeh" path="res://scenes/wagon.tscn" id="3_bkf63"]
-[ext_resource type="Texture2D" uid="uid://c185w4i1qg0wv" path="res://sprites/placeholders/placeholder-base.png" id="3_rgicp"]
+[ext_resource type="Texture2D" uid="uid://wlxkbcpp2r3d" path="res://sprites/placeholders/placeholder-base.png" id="3_rgicp"]
 [ext_resource type="PackedScene" uid="uid://21djceuff8ui" path="res://scenes/pin.tscn" id="4_lxbkj"]
 
 [sub_resource type="Resource" id="Resource_qa7hb"]
