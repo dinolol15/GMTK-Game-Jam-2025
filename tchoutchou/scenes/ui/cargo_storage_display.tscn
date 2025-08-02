@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://ci073hgekjamw"]
+
+[ext_resource type="Script" uid="uid://btamhfuxvwwq7" path="res://scripts/ui/cargo_storage_display.gd" id="1_ig7jx"]
+
+[node name="CargoStorageDisplay" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 32
+script = ExtResource("1_ig7jx")

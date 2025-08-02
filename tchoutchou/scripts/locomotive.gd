@@ -7,7 +7,7 @@ extends PathFollow2D
 @export var wagons: Array[Wagon]
 
 
-func _process(delta) -> void:
+func _process(delta: float) -> void:
 	progress += speed * delta
 	for i in range(wagons.size()):
 		wagons[i].progress = progress - wagon_separation * (i + 1)

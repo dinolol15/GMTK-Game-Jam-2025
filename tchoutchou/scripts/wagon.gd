@@ -25,5 +25,5 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		animation_player.play("right_cargo" if cargo != old_cargo else "wrong_cargo")
 
 
-func _process(_delta) -> void:
+func _process(_delta: float) -> void:
 	cargo_sprite.global_position = global_position + cargo_sprite_offset

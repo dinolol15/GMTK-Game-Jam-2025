@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://wduj21d75dnl"]
+
+[ext_resource type="PackedScene" uid="uid://cvgjn5yck8dbc" path="res://scenes/main_base.tscn" id="1_yqjtg"]
+[ext_resource type="PackedScene" uid="uid://d3v5ucblodmcu" path="res://scenes/stations/storage_station.tscn" id="2_lnu2h"]
+[ext_resource type="Script" uid="uid://bfmxgoaa5febu" path="res://scripts/camera.gd" id="3_lbhrr"]
+[ext_resource type="PackedScene" uid="uid://ci073hgekjamw" path="res://scenes/ui/cargo_storage_display.tscn" id="3_lnu2h"]
+[ext_resource type="Script" uid="uid://tl20c5y5xo0o" path="res://scripts/audio_stream_crossfader.gd" id="4_iywne"]
+[ext_resource type="AudioStream" uid="uid://bb8x2defc6w8d" path="res://sounds/tchoutchouchill.wav" id="5_u5sy4"]
+[ext_resource type="AudioStream" uid="uid://c60kjlr0r56ht" path="res://sounds/tchoutchounotchill.wav" id="6_gee14"]
+
+[node name="Game" type="Node2D"]
+
+[node name="MainBase" parent="." instance=ExtResource("1_yqjtg")]
+
+[node name="StorageStation" parent="MainBase" instance=ExtResource("2_lnu2h")]
+
+[node name="PanZoomCamera" type="Camera2D" parent="."]
+script = ExtResource("3_lbhrr")
+
+[node name="AudioStreamCrossfader" type="Node" parent="." node_paths=PackedStringArray("audio_stream_player_1", "audio_stream_player_2")]
+script = ExtResource("4_iywne")
+audio_stream_player_1 = NodePath("ChillAudioStreamPlayer")
+audio_stream_player_2 = NodePath("NotChillAudioStreamPlayer")
+
+[node name="ChillAudioStreamPlayer" type="AudioStreamPlayer" parent="AudioStreamCrossfader"]
+stream = ExtResource("5_u5sy4")
+autoplay = true
+
+[node name="NotChillAudioStreamPlayer" type="AudioStreamPlayer" parent="AudioStreamCrossfader"]
+stream = ExtResource("6_gee14")
+volume_db = inf_neg
+autoplay = true
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="MarginContainer" type="MarginContainer" parent="UI"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -481.0
+offset_bottom = 56.0
+grow_horizontal = 0
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 16
+
+[node name="CargoStorageDisplay" parent="UI/MarginContainer" instance=ExtResource("3_lnu2h")]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0

@@ -10,13 +10,13 @@
 [ext_resource type="PackedScene" uid="uid://didp6cj8fubkr" path="res://scenes/stations/ammo_station.tscn" id="5_vs5sm"]
 [ext_resource type="PackedScene" uid="uid://b5lqiiiwhqd5r" path="res://scenes/stations/coal_station.tscn" id="6_rgicp"]
 
-[sub_resource type="Resource" id="Resource_4vr0y"]
+[sub_resource type="Resource" id="Resource_vs5sm"]
 script = ExtResource("2_tldlq")
 from_cargo = 5
 to_cargo = 0
 cooldown = 0.0
 
-[sub_resource type="Resource" id="Resource_vs5sm"]
+[sub_resource type="Resource" id="Resource_4vr0y"]
 script = ExtResource("2_tldlq")
 from_cargo = 5
 to_cargo = 0
@@ -38,12 +38,12 @@ position = Vector2(-252, 221)
 
 [node name="SmeltingStation" parent="." instance=ExtResource("5_tldlq")]
 position = Vector2(294, -193)
-cargo_conversions = Array[ExtResource("2_tldlq")]([SubResource("Resource_4vr0y")])
+cargo_conversions = Array[ExtResource("2_tldlq")]([SubResource("Resource_vs5sm")])
 range_circle_color = Color(0, 1, 1, 1)
 
 [node name="AmmoStation" parent="." instance=ExtResource("5_vs5sm")]
 position = Vector2(356, 249)
-cargo_conversions = Array[ExtResource("2_tldlq")]([SubResource("Resource_vs5sm"), SubResource("Resource_s3ac5")])
+cargo_conversions = Array[ExtResource("2_tldlq")]([SubResource("Resource_4vr0y"), SubResource("Resource_s3ac5")])
 
 [node name="Pin" parent="." instance=ExtResource("4_lxbkj")]
 

@@ -16,5 +16,5 @@ func update_rope_scale() -> void:
 	set_instance_shader_parameter("rope_length", get_length())
 
 
-func _process(_delta):
+func _process(_delta: float) -> void:
 	update_rope_scale()

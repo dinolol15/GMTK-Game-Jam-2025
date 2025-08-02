@@ -34,7 +34,7 @@ func update_cargo_conversion_displays() -> void:
 	progress_circle.position.y = -CARGO_CONVERSION_DISPLAY_SEPARATION * (num_cargo_conversions - 1) / 2.0
 
 
-func _process(_delta) -> void:
+func _process(_delta: float) -> void:
 	if cargo_conversions != previous_cargo_conversions:
 		update_cargo_conversion_displays()
 		previous_cargo_conversions = cargo_conversions.duplicate()
