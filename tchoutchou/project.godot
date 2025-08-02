@@ -49,6 +49,7 @@ cursor={
 2d_physics/layer_3="EnemyHitboxes"
 2d_physics/layer_4="RopeColliders"
 2d_physics/layer_5="Stations"
+2d_physics/layer_6="Damage Sources"
 
 [rendering]
 
