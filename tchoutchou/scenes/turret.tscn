@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://ywkdsdtdpl6t"]
+[gd_scene load_steps=8 format=3 uid="uid://ywkdsdtdpl6t"]
 
 [ext_resource type="Script" uid="uid://cen3mxqovc07j" path="res://scripts/turret.gd" id="1_6fjxm"]
 [ext_resource type="Texture2D" uid="uid://coi2if4bvur7k" path="res://sprites/placeholders/placeholder-turret-gun.png" id="1_x3mc5"]
 [ext_resource type="Texture2D" uid="uid://b0p05ih24hrvw" path="res://sprites/placeholders/placeholder-turret-flamethrower.png" id="2_dirdf"]
 [ext_resource type="Texture2D" uid="uid://ji1rtd3jhbyo" path="res://sprites/placeholders/placeholder-turret-laser.png" id="4_mqfwu"]
 [ext_resource type="Texture2D" uid="uid://d2f5rn5n0newx" path="res://sprites/placeholders/placeholder-turret-rocket.png" id="5_0dv4j"]
+[ext_resource type="AudioStream" uid="uid://dohxqoawgryqp" path="res://plink_sfx.tres" id="6_dirdf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_tg0ex"]
 animations = [{
@@ -62,3 +63,7 @@ position = Vector2(-23, 0)
 
 [node name="FlamethrowerMuzzle" type="Node2D" parent="."]
 position = Vector2(28, 0)
+
+[node name="GunSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_dirdf")
+pitch_scale = 1.25

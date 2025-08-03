@@ -23,4 +23,7 @@ func _physics_process(_delta: float) -> void:
 		enemy_instance.position = Vector2.from_angle(randf() * 2 * PI) * 1000
 		add_child(enemy_instance)
 
+	if counter == 1:
+		$GunTurret.is_active = true
+		$RocketTurret.is_active = true
 	counter += 1
