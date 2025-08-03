@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cvgjn5yck8dbc"]
+[gd_scene load_steps=7 format=3 uid="uid://cvgjn5yck8dbc"]
 
 [ext_resource type="Script" uid="uid://clyb22gg0xpo4" path="res://scripts/main_base.gd" id="1_7x50c"]
-[ext_resource type="Texture2D" uid="uid://wlxkbcpp2r3d" path="res://sprites/placeholders/placeholder-base.png" id="1_lo0ow"]
+[ext_resource type="Texture2D" uid="uid://c185w4i1qg0wv" path="res://sprites/placeholders/placeholder-base.png" id="1_lo0ow"]
 [ext_resource type="AudioStream" uid="uid://dohxqoawgryqp" path="res://plink_sfx.tres" id="3_0mp7v"]
+[ext_resource type="PackedScene" uid="uid://d3v5ucblodmcu" path="res://scenes/storage_station.tscn" id="4_c3sjj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2mtuc"]
 size = Vector2(96, 96)
@@ -50,6 +51,8 @@ theme_override_constants/outline_size = 4
 text = "{health}"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="StorageStation" parent="." instance=ExtResource("4_c3sjj")]
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://rb54jq74xf72"]
+
+[ext_resource type="Script" uid="uid://b7ltvoylqujpa" path="res://scripts/ui/multi_placeable_display.gd" id="1_eqe8n"]
+
+[node name="MultiPlaceableDisplay" type="HBoxContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_eqe8n")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://de453cs4wcuds"]
 
 [ext_resource type="PackedScene" uid="uid://bchr04rl5lu6s" path="res://scenes/ui/cargo_texture_rect.tscn" id="1_d7lkl"]
-[ext_resource type="Script" uid="uid://b7s5k8ogaelif" path="res://ui/cargo_count_display.gd" id="1_fhyns"]
+[ext_resource type="Script" uid="uid://b7s5k8ogaelif" path="res://scripts/ui/cargo_count_display.gd" id="1_fhyns"]
 [ext_resource type="Texture2D" uid="uid://crnqicg56e4ht" path="res://sprites/crafting_materials/resources_outlined.png" id="3_2hywd"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2hywd"]

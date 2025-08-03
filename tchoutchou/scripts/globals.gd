@@ -1,4 +1,7 @@
-class_name Globals
+extends Node
+
+signal loop_started()
+signal loop_stopped()
 
 enum Cargo {
 	NONE,
@@ -15,7 +18,8 @@ enum Cargo {
 	FUEL,
 	AMMO,
 }
-const CARGO_FRAMES: Dictionary[Globals.Cargo, int] = {
+
+const CARGO_FRAMES: Dictionary[Cargo, int] = {
 	Cargo.NONE: 10,
 	Cargo.ANY: 21,
 	Cargo.WOOD_LOG: 0,
@@ -30,3 +34,9 @@ const CARGO_FRAMES: Dictionary[Globals.Cargo, int] = {
 	Cargo.FUEL: 32,
 	Cargo.AMMO: 20,
 }
+
+var camera_zoom = 1.0
+var looping = false:
+	set(value):
+		looping = value
+		(loop_started if looping else loop_stopped).emit()

@@ -1,19 +1,31 @@
-[gd_scene load_steps=25 format=3 uid="uid://wduj21d75dnl"]
+[gd_scene load_steps=48 format=3 uid="uid://wduj21d75dnl"]
 
 [ext_resource type="Shader" uid="uid://bhjktewdb5dse" path="res://shaders/background.gdshader" id="1_0tnpc"]
 [ext_resource type="Script" uid="uid://d17tguwenyq7u" path="res://scripts/game.gd" id="1_trtic"]
 [ext_resource type="PackedScene" uid="uid://cvgjn5yck8dbc" path="res://scenes/main_base.tscn" id="1_yqjtg"]
-[ext_resource type="PackedScene" uid="uid://d3v5ucblodmcu" path="res://scenes/stations/storage_station.tscn" id="2_lnu2h"]
 [ext_resource type="Texture2D" uid="uid://g7e76vkcri2m" path="res://sprites/icon.svg" id="2_vtaks"]
 [ext_resource type="Script" uid="uid://bfmxgoaa5febu" path="res://scripts/camera.gd" id="3_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://ci073hgekjamw" path="res://scenes/ui/cargo_storage_display.tscn" id="3_lnu2h"]
 [ext_resource type="Script" uid="uid://tl20c5y5xo0o" path="res://scripts/audio_stream_crossfader.gd" id="4_iywne"]
 [ext_resource type="AudioStream" uid="uid://bb8x2defc6w8d" path="res://sounds/tchoutchouchill.wav" id="5_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://7axpi421xeat" path="res://scenes/loop_path.tscn" id="5_vtaks"]
+[ext_resource type="PackedScene" uid="uid://c6hnlxdkiyqeh" path="res://scenes/wagon.tscn" id="6_ca42v"]
 [ext_resource type="AudioStream" uid="uid://c60kjlr0r56ht" path="res://sounds/tchoutchounotchill.wav" id="6_gee14"]
-[ext_resource type="PackedScene" uid="uid://21djceuff8ui" path="res://scenes/pin.tscn" id="6_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://21djceuff8ui" path="res://scenes/placeables/pin.tscn" id="6_kvpfn"]
+[ext_resource type="PackedScene" uid="uid://dbrjrht4204a7" path="res://scenes/placeables/wood_log_station.tscn" id="7_ca42v"]
+[ext_resource type="PackedScene" uid="uid://b128xx41dufbg" path="res://scenes/locomotive.tscn" id="7_ir15t"]
+[ext_resource type="PackedScene" uid="uid://b00cjvurhkava" path="res://scenes/station_dragger.tscn" id="8_rysoc"]
 [ext_resource type="Texture2D" uid="uid://cgj16etxxne8s" path="res://sprites/play_button.png" id="12_dinhu"]
+[ext_resource type="PackedScene" uid="uid://rb54jq74xf72" path="res://scenes/ui/multi_placeable_display.tscn" id="13_264po"]
 [ext_resource type="Texture2D" uid="uid://bd4n2vqk8spr5" path="res://sprites/pause_button.png" id="13_kvuet"]
+[ext_resource type="Script" uid="uid://b1bmombhv3ugv" path="res://scripts/placeable.gd" id="14_1kice"]
+[ext_resource type="PackedScene" uid="uid://cn2elc8ah7xnq" path="res://scenes/placeables/sawmill_station.tscn" id="15_1kice"]
+[ext_resource type="PackedScene" uid="uid://didp6cj8fubkr" path="res://scenes/placeables/ammo_station.tscn" id="15_bhx41"]
+[ext_resource type="PackedScene" uid="uid://v5s45htywplc" path="res://scenes/placeables/stone_station.tscn" id="16_5newe"]
+[ext_resource type="PackedScene" uid="uid://bhvkf3k6fk1r3" path="res://scenes/placeables/smelting_station.tscn" id="16_qnb83"]
+[ext_resource type="PackedScene" uid="uid://fikyc3lipgd1" path="res://scenes/placeables/copper_ore_station.tscn" id="17_sww3w"]
+[ext_resource type="PackedScene" uid="uid://b7bhq6jx15vxy" path="res://scenes/placeables/iron_ore_station.tscn" id="18_suyxu"]
+[ext_resource type="PackedScene" uid="uid://b5lqiiiwhqd5r" path="res://scenes/placeables/coal_station.tscn" id="19_sgl2t"]
 
 [sub_resource type="Gradient" id="Gradient_0tnpc"]
 colors = PackedColorArray(0, 0.462745, 0, 1, 0.737255, 1, 0, 1)
@@ -39,21 +51,123 @@ shader_parameter/big_noise = SubResource("NoiseTexture2D_0tnpc")
 shader_parameter/small_noise = SubResource("NoiseTexture2D_vtaks")
 shader_parameter/period = 0.004
 
-[sub_resource type="Animation" id="Animation_trtic"]
-resource_name = "unchill"
-length = 3.0
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:mix")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [0.0, 1.0]
-}
+[sub_resource type="Resource" id="Resource_qouja"]
+script = ExtResource("14_1kice")
+name = "Fuel Refiner"
+icon = 11
+price = Dictionary[int, int]({
+3: 5,
+4: 3,
+7: 5
+})
+metadata/_custom_type_script = "uid://b1bmombhv3ugv"
+
+[sub_resource type="Resource" id="Resource_wljb1"]
+script = ExtResource("14_1kice")
+name = "Oil Extractor"
+icon = 10
+price = Dictionary[int, int]({
+4: 5,
+7: 5
+})
+metadata/_custom_type_script = "uid://b1bmombhv3ugv"
+
+[sub_resource type="Resource" id="Resource_v2yb1"]
+script = ExtResource("14_1kice")
+name = "Ammo Crafter"
+icon = 12
+price = Dictionary[int, int]({
+3: 5,
+7: 5
+})
+scene = ExtResource("15_bhx41")
+metadata/_custom_type_script = "uid://b1bmombhv3ugv"
+
+[sub_resource type="Resource" id="Resource_js0lu"]
+script = ExtResource("14_1kice")
+name = "Ore Smelter"
+icon = 7
+price = Dictionary[int, int]({
+2: 3,
+3: 5,
+4: 5
+})
+scene = ExtResource("16_qnb83")
+metadata/_custom_type_script = "uid://b1bmombhv3ugv"
+
+[sub_resource type="Resource" id="Resource_gxtfn"]
+script = ExtResource("14_1kice")
+name = "Copper Mine"
+icon = 8
+price = Dictionary[int, int]({
+3: 3,
+4: 3
+})
+scene = ExtResource("17_sww3w")
+metadata/_custom_type_script = "uid://b1bmombhv3ugv"
+
+[sub_resource type="Resource" id="Resource_twgab"]
+script = ExtResource("14_1kice")
+name = "Iron Mine"
+icon = 6
+price = Dictionary[int, int]({
+3: 3,
+4: 3
+})
+scene = ExtResource("18_suyxu")
+metadata/_custom_type_script = "uid://b1bmombhv3ugv"
+
+[sub_resource type="Resource" id="Resource_02fa5"]
+script = ExtResource("14_1kice")
+name = "Coal Mine"
+icon = 5
+price = Dictionary[int, int]({
+3: 3,
+4: 3
+})
+scene = ExtResource("19_sgl2t")
+metadata/_custom_type_script = "uid://b1bmombhv3ugv"
+
+[sub_resource type="Resource" id="Resource_e1j6l"]
+script = ExtResource("14_1kice")
+name = "Stone Quarry"
+icon = 4
+price = Dictionary[int, int]({
+2: 1,
+3: 3
+})
+scene = ExtResource("16_5newe")
+metadata/_custom_type_script = "uid://b1bmombhv3ugv"
+
+[sub_resource type="Resource" id="Resource_bt5mj"]
+script = ExtResource("14_1kice")
+name = "Sawmill"
+icon = 3
+price = Dictionary[int, int]({
+2: 3
+})
+scene = ExtResource("15_1kice")
+metadata/_custom_type_script = "uid://b1bmombhv3ugv"
+
+[sub_resource type="Resource" id="Resource_37s47"]
+script = ExtResource("14_1kice")
+name = "Forest"
+icon = 2
+price = Dictionary[int, int]({
+2: 3
+})
+scene = ExtResource("7_ca42v")
+metadata/_custom_type_script = "uid://b1bmombhv3ugv"
+
+[sub_resource type="Resource" id="Resource_5newe"]
+script = ExtResource("14_1kice")
+name = "Pin"
+icon = 1
+price = Dictionary[int, int]({
+2: 1
+})
+scene = ExtResource("6_kvpfn")
+metadata/_custom_type_script = "uid://b1bmombhv3ugv"
 
 [sub_resource type="Animation" id="Animation_ir15t"]
 length = 0.001
@@ -72,6 +186,22 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_ca42v"]
 resource_name = "chill"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:mix")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_trtic"]
+resource_name = "unchill"
 length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -83,7 +213,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [1.0, 0.0]
+"values": [0.0, 1.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ca42v"]
@@ -93,9 +223,10 @@ _data = {
 &"unchill": SubResource("Animation_trtic")
 }
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("loop_path", "loop_button", "crossfader_animation_player")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("loop_path", "locomotive", "loop_button", "crossfader_animation_player")]
 script = ExtResource("1_trtic")
 loop_path = NodePath("LoopPath")
+locomotive = NodePath("LoopPath/Locomotive")
 loop_button = NodePath("UI/MarginContainer/LoopButton")
 crossfader_animation_player = NodePath("AudioStreamCrossfader/AnimationPlayer")
 
@@ -106,17 +237,35 @@ texture = ExtResource("2_vtaks")
 polygon = PackedVector2Array(-100000, -100000, -100000, 100000, 100000, 100000, 100000, -100000)
 uv = PackedVector2Array(0, 0, 0, 128, 128, 128, 128, 0)
 
-[node name="MainBase" parent="." instance=ExtResource("1_yqjtg")]
-
-[node name="StorageStation" parent="MainBase" instance=ExtResource("2_lnu2h")]
-
 [node name="LoopPath" parent="." instance=ExtResource("5_vtaks")]
 position = Vector2(0, -400)
 
-[node name="Pin" parent="." instance=ExtResource("6_kvpfn")]
+[node name="Locomotive" parent="LoopPath" node_paths=PackedStringArray("wagons") instance=ExtResource("7_ir15t")]
+rotation = 1.5708
+wagons = [NodePath("../Wagon"), NodePath("../Wagon2"), NodePath("../Wagon3")]
+
+[node name="Wagon" parent="LoopPath" instance=ExtResource("6_ca42v")]
+rotation = 1.5708
+
+[node name="Wagon2" parent="LoopPath" instance=ExtResource("6_ca42v")]
+rotation = 1.5708
+
+[node name="Wagon3" parent="LoopPath" instance=ExtResource("6_ca42v")]
+rotation = 1.5708
+
+[node name="MainBase" parent="." instance=ExtResource("1_yqjtg")]
+
+[node name="PlacableRoot" type="Node2D" parent="."]
+
+[node name="StationDragger" parent="PlacableRoot" instance=ExtResource("8_rysoc")]
+position = Vector2(250, -200)
+
+[node name="WoodLogStation" parent="PlacableRoot/StationDragger" instance=ExtResource("7_ca42v")]
+
+[node name="Pin" parent="PlacableRoot" instance=ExtResource("6_kvpfn")]
 position = Vector2(-300, 0)
 
-[node name="Pin2" parent="." instance=ExtResource("6_kvpfn")]
+[node name="Pin2" parent="PlacableRoot" instance=ExtResource("6_kvpfn")]
 position = Vector2(300, 0)
 
 [node name="PanZoomCamera" type="Camera2D" parent="."]
@@ -140,6 +289,12 @@ theme_override_constants/margin_bottom = 4
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
+
+[node name="MultiPlaceableDisplay" parent="UI/MarginContainer" instance=ExtResource("13_264po")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+placeables = Array[ExtResource("14_1kice")]([SubResource("Resource_qouja"), SubResource("Resource_wljb1"), SubResource("Resource_v2yb1"), SubResource("Resource_js0lu"), SubResource("Resource_gxtfn"), SubResource("Resource_twgab"), SubResource("Resource_02fa5"), SubResource("Resource_e1j6l"), SubResource("Resource_bt5mj"), SubResource("Resource_37s47"), SubResource("Resource_5newe")])
 
 [node name="LoopButton" type="TextureButton" parent="UI/MarginContainer"]
 modulate = Color(0.412, 0.412, 0.412, 1)

@@ -2,13 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://7axpi421xeat" path="res://scenes/loop_path.tscn" id="1_07qnl"]
 [ext_resource type="PackedScene" uid="uid://b128xx41dufbg" path="res://scenes/locomotive.tscn" id="2_lxbkj"]
-[ext_resource type="PackedScene" uid="uid://b7bhq6jx15vxy" path="res://scenes/stations/iron_ore_station.tscn" id="2_rgicp"]
+[ext_resource type="PackedScene" uid="uid://b7bhq6jx15vxy" path="res://scenes/placeables/iron_ore_station.tscn" id="2_rgicp"]
 [ext_resource type="Script" uid="uid://dng8c0vst2yed" path="res://scripts/cargo_conversion.gd" id="2_tldlq"]
 [ext_resource type="PackedScene" uid="uid://c6hnlxdkiyqeh" path="res://scenes/wagon.tscn" id="3_bkf63"]
-[ext_resource type="PackedScene" uid="uid://21djceuff8ui" path="res://scenes/pin.tscn" id="4_lxbkj"]
-[ext_resource type="PackedScene" uid="uid://bhvkf3k6fk1r3" path="res://scenes/stations/smelting_station.tscn" id="5_tldlq"]
-[ext_resource type="PackedScene" uid="uid://didp6cj8fubkr" path="res://scenes/stations/ammo_station.tscn" id="5_vs5sm"]
-[ext_resource type="PackedScene" uid="uid://b5lqiiiwhqd5r" path="res://scenes/stations/coal_station.tscn" id="6_rgicp"]
+[ext_resource type="PackedScene" uid="uid://21djceuff8ui" path="res://scenes/placeables/pin.tscn" id="4_lxbkj"]
+[ext_resource type="PackedScene" uid="uid://bhvkf3k6fk1r3" path="res://scenes/placeables/smelting_station.tscn" id="5_tldlq"]
+[ext_resource type="PackedScene" uid="uid://didp6cj8fubkr" path="res://scenes/placeables/ammo_station.tscn" id="5_vs5sm"]
+[ext_resource type="PackedScene" uid="uid://b5lqiiiwhqd5r" path="res://scenes/placeables/coal_station.tscn" id="6_rgicp"]
 
 [sub_resource type="Resource" id="Resource_vs5sm"]
 script = ExtResource("2_tldlq")

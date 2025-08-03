@@ -77,6 +77,7 @@ handle = NodePath("RopeLine/Handle")
 rope = NodePath("RopeLine/Rope")
 
 [node name="RopeLine" type="Line2D" parent="."]
+z_index = 1
 material = SubResource("ShaderMaterial_gdvn4")
 instance_shader_parameters/rope_length = 400.0
 points = PackedVector2Array(0, 0, 0, 4, 0, 8, 0, 12, 0, 16, 0, 20, 0, 24, 0, 28, 0, 32, 0, 36, 0, 40, 0, 44, 0, 48, 0, 52, 0, 56, 0, 60, 0, 64, 0, 68, 0, 72, 0, 76, 0, 80, 0, 84, 0, 88, 0, 92, 0, 96, 0, 100, 0, 104, 0, 108, 0, 112, 0, 116, 0, 120, 0, 124, 0, 128, 0, 132, 0, 136, 0, 140, 0, 144, 0, 148, 0, 152, 0, 156, 0, 160, 0, 164, 0, 168, 0, 172, 0, 176, 0, 180, 0, 184, 0, 188, 0, 192, 0, 196, 0, 200)
@@ -92,7 +93,6 @@ position_mode = 0
 metadata/_custom_type_script = "uid://dfppmnngy2wx4"
 
 [node name="Handle" type="Area2D" parent="RopeLine"]
-z_index = 1
 position = Vector2(0, 200)
 script = ExtResource("4_q673f")
 
@@ -106,6 +106,7 @@ rope_path = NodePath("../../Rope")
 metadata/_custom_type_script = "uid://1xluodkpnre3"
 
 [node name="HandleCircle" type="Polygon2D" parent="RopeLine/Handle"]
+z_index = 5
 material = SubResource("ShaderMaterial_hmejf")
 texture = ExtResource("6_q673f")
 polygon = PackedVector2Array(-20, -20, -20, 20, 20, 20, 20, -20)
@@ -133,6 +134,7 @@ metadata/_custom_type_script = "uid://b2shq2gjd4fvt"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.54, 0, 0, 1)
+z_index = 4
 texture = ExtResource("6_jx6ql")
 
 [connection signal="mouse_entered" from="RopeLine/Handle" to="RopeLine/Handle" method="_on_mouse_entered"]

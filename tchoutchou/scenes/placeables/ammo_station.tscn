@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://didp6cj8fubkr"]
 
-[ext_resource type="PackedScene" uid="uid://h7ul73bxxghh" path="res://scenes/stations/station.tscn" id="1_axeev"]
+[ext_resource type="PackedScene" uid="uid://h7ul73bxxghh" path="res://scenes/station.tscn" id="1_axeev"]
 [ext_resource type="Texture2D" uid="uid://c185w4i1qg0wv" path="res://sprites/placeholders/placeholder-base.png" id="2_ndt0e"]
 [ext_resource type="Script" uid="uid://t4eshkcmedar" path="res://scripts/stations/crafting_station.gd" id="2_xftrm"]
 [ext_resource type="Script" uid="uid://dng8c0vst2yed" path="res://scripts/cargo_conversion.gd" id="3_xftrm"]
