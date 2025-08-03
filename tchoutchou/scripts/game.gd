@@ -3,10 +3,19 @@ extends Node2D
 const MIN_ROPE_LENGTH = 200.0
 
 @export var loop_path: LoopPath
+@export var locomotive: Locomotive
 @export var loop_button: BaseButton
 @export var crossfader_animation_player: AnimationPlayer
 
-var looping = false
+
+func _on_loop_started() -> void:
+	locomotive.active = true
+	crossfader_animation_player.play("unchill")
+
+
+func _on_loop_stopped() -> void:
+	locomotive.active = false
+	crossfader_animation_player.play("chill")
 
 
 func _on_loop_path_loop_closed():
@@ -21,5 +30,9 @@ func _on_loop_path_loop_opened():
 
 
 func _on_loop_button_toggled(toggled_on: bool) -> void:
-	looping = toggled_on
-	crossfader_animation_player.play("unchill" if looping else "chill")
+	Globals.looping = toggled_on
+
+
+func _ready():
+	Globals.loop_started.connect(_on_loop_started)
+	Globals.loop_stopped.connect(_on_loop_stopped)

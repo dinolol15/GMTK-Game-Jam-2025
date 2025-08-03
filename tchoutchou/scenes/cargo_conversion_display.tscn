@@ -10,14 +10,12 @@ from_cargo_sprite = NodePath("FromCargoSprite")
 to_cargo_sprite = NodePath("ToCargoSprite")
 
 [node name="ArrowSprite" type="Sprite2D" parent="."]
-z_index = 1
+z_index = 3
 scale = Vector2(2, 2)
 texture = ExtResource("2_mm0rr")
 
 [node name="FromCargoSprite" parent="." instance=ExtResource("3_71vrc")]
-z_index = 1
 position = Vector2(-52, 0)
 
 [node name="ToCargoSprite" parent="." instance=ExtResource("3_71vrc")]
-z_index = 1
 position = Vector2(52, 0)

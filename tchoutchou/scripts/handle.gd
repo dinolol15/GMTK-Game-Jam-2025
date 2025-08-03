@@ -9,22 +9,6 @@ var dragging = false
 
 var unsnapped_position: Vector2
 
-func _input(event: InputEvent) -> void:
-	if dragging:
-		if event.is_action_released("click"):
-			dragging = false
-		elif event is InputEventMouseMotion:
-			var old_position = position
-			unsnapped_position += event.relative / Settings.camera_zoom
-			if unsnapped_position.length() <= snap_distance:
-				position = Vector2.ZERO
-			else:
-				position = unsnapped_position
-			moved.emit(old_position, position)
-	elif hovering and event.is_action_pressed("click"):
-		unsnapped_position = position
-		dragging = true
-
 
 func _on_mouse_entered() -> void:
 	hovering = true
@@ -32,3 +16,33 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	hovering = false
+
+
+func _on_loop_started() -> void:
+	visible = false
+
+
+func _on_loop_stopped() -> void:
+	visible = true
+
+
+func _input(event: InputEvent) -> void:
+	if dragging:
+		if event.is_action_released("click"):
+			dragging = false
+		elif event is InputEventMouseMotion:
+			var old_position = position
+			unsnapped_position += event.relative / Globals.camera_zoom
+			if unsnapped_position.length() <= snap_distance:
+				position = Vector2.ZERO
+			else:
+				position = unsnapped_position
+			moved.emit(old_position, position)
+	elif hovering and event.is_action_pressed("click") and not Globals.looping:
+		unsnapped_position = position
+		dragging = true
+
+
+func _ready() -> void:
+	Globals.loop_started.connect(_on_loop_started)
+	Globals.loop_stopped.connect(_on_loop_stopped)

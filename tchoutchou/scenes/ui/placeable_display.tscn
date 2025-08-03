@@ -1,0 +1,56 @@
+[gd_scene load_steps=6 format=3 uid="uid://cmr46wawstef7"]
+
+[ext_resource type="PackedScene" uid="uid://bchr04rl5lu6s" path="res://scenes/ui/cargo_texture_rect.tscn" id="1_4yy8t"]
+[ext_resource type="Script" uid="uid://cjvlkn8an301f" path="res://scripts/ui/placeable_display.gd" id="1_85p2f"]
+[ext_resource type="Texture2D" uid="uid://crnqicg56e4ht" path="res://sprites/crafting_materials/resources_outlined.png" id="2_85p2f"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_lug4h"]
+font_size = 12
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_85p2f"]
+atlas = ExtResource("2_85p2f")
+region = Rect2(240, 0, 24, 24)
+
+[node name="PlaceableDisplay" type="VBoxContainer" node_paths=PackedStringArray("cargo_count_display_container", "name_label", "cargo_texture_rect")]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -81.0
+offset_right = 56.0
+grow_vertical = 0
+alignment = 2
+script = ExtResource("1_85p2f")
+cargo_count_display_container = NodePath("CargoCountDisplayContainer")
+name_label = NodePath("NameLabel")
+cargo_texture_rect = NodePath("MarginContainer/MarginContainer/CargoTextureRect")
+
+[node name="CargoCountDisplayContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_lug4h")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="Button" type="Button" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="CargoTextureRect" parent="MarginContainer/MarginContainer" instance=ExtResource("1_4yy8t")]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_85p2f")

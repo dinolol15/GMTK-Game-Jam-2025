@@ -11,3 +11,4 @@ progress_circle = NodePath("ProgressCircle")
 [node name="SpriteRoot" type="Node2D" parent="."]
 
 [node name="ProgressCircle" parent="." instance=ExtResource("2_eseex")]
+z_index = 4

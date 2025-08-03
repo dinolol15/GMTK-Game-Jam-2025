@@ -17,4 +17,5 @@ collision_mask = 0
 shape = SubResource("RectangleShape2D_b570b")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+z_index = 2
 texture = ExtResource("2_rkiwd")

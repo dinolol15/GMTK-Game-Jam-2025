@@ -8,6 +8,12 @@ extends PathFollow2D
 		if cargo_textures.has(cargo):
 			sprite.texture = cargo_textures[cargo]
 		cargo_sprite.cargo = cargo
+@export var active := false:
+	set(value):
+		active = value
+		if not active:
+			cargo = Globals.Cargo.NONE
+			progress = 0.0
 @export var cargo_textures: Dictionary[Globals.Cargo, Texture2D]
 @export var cargo_sprite_offset := Vector2.ZERO
 
@@ -17,8 +23,9 @@ extends PathFollow2D
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	if Engine.is_editor_hint():
+	if Engine.is_editor_hint() or not active:
 		return
+
 	if area is Station:
 		var old_cargo = cargo
 		cargo = area.try_convert(cargo)

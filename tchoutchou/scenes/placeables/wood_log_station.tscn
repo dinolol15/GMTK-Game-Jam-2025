@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://dbrjrht4204a7"]
+
+[ext_resource type="PackedScene" uid="uid://h7ul73bxxghh" path="res://scenes/station.tscn" id="1_xvdtg"]
+[ext_resource type="Script" uid="uid://dng8c0vst2yed" path="res://scripts/cargo_conversion.gd" id="2_12g1g"]
+[ext_resource type="Texture2D" uid="uid://c185w4i1qg0wv" path="res://sprites/placeholders/placeholder-base.png" id="3_6g82c"]
+
+[sub_resource type="Resource" id="Resource_uxjfq"]
+script = ExtResource("2_12g1g")
+from_cargo = 0
+to_cargo = 2
+cooldown = 3.0
+metadata/_custom_type_script = "uid://dng8c0vst2yed"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xvdtg"]
+radius = 128.0
+
+[node name="WoodLogStation" instance=ExtResource("1_xvdtg")]
+cargo_conversions = Array[ExtResource("2_12g1g")]([SubResource("Resource_uxjfq")])
+range_circle_color = Color(0.321569, 0.219608, 0.12549, 1)
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_xvdtg")
+
+[node name="RangeCircle" parent="." index="1"]
+instance_shader_parameters/fill_color = Color(0.321569, 0.219608, 0.12549, 1)
+fill_color = Color(0.321569, 0.219608, 0.12549, 1)
+
+[node name="StationCargoConversionDisplay" parent="." index="2"]
+cargo_conversions = Array[ExtResource("2_12g1g")]([SubResource("Resource_uxjfq")])
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="4"]
+modulate = Color(0.321569, 0.219608, 0.12549, 1)
+texture = ExtResource("3_6g82c")
