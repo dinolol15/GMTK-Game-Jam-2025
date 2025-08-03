@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 var speed = 200.0
 var range = 1000.0
-var turning_speed = 3.0
+var turning_speed = 1.0
 var hits_enemies = true
 var hits_allies = true
 var damage = 0.0
@@ -15,6 +15,7 @@ var explosion = preload("res://scenes/explosion.tscn")
 var target: Node2D
 var target_direction: Vector2
 var target_distance: float
+var targetted_group: String
 
 
 func explode():
@@ -25,6 +26,15 @@ func explode():
 	explosion_instance.hits_allies = hits_allies
 	get_tree().root.add_child(explosion_instance) # explosion is parented under the root node
 	queue_free()
+
+
+func new_target():
+	var possible_targets = get_tree().get_nodes_in_group(targetted_group)
+	if possible_targets.size() == 0:
+		has_target = false
+	else:
+		target = possible_targets[randi_range(0, possible_targets.size()-1)]
+		has_target = true
 
 
 func get_direction_to_target() -> Vector2:
@@ -40,7 +50,7 @@ func rotate_towards_target() -> void:
 	var angle_to_target = get_angle_to_target()
 
 	if abs(angle_to_target) < turning_speed:
-		global_rotation = target_direction.angle()
+		rotation += angle_to_target
 	else:
 		rotation += turning_speed * sign(angle_to_target)
 
@@ -58,7 +68,7 @@ func _physics_process(_delta: float) -> void:
 		target_direction = get_direction_to_target()
 		target_distance = get_distance_to_target()
 	else:
-		has_target = false
+		new_target()
 
 	if has_target:
 		rotate_towards_target()

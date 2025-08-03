@@ -99,6 +99,7 @@ func exploder_ai_tick():
 
 
 func _ready() -> void:
+	add_to_group("enemies")
 	target = get_node("../MainBase")
 	has_target = true
 
