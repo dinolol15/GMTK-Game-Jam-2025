@@ -227,7 +227,7 @@ _data = {
 script = ExtResource("1_trtic")
 loop_path = NodePath("LoopPath")
 locomotive = NodePath("LoopPath/Locomotive")
-loop_button = NodePath("UI/MarginContainer/LoopButton")
+loop_button = NodePath("UI/MarginContainer2/LoopButton")
 crossfader_animation_player = NodePath("AudioStreamCrossfader/AnimationPlayer")
 
 [node name="Background" type="Polygon2D" parent="."]
@@ -246,12 +246,15 @@ wagons = [NodePath("../Wagon"), NodePath("../Wagon2"), NodePath("../Wagon3")]
 
 [node name="Wagon" parent="LoopPath" instance=ExtResource("6_ca42v")]
 rotation = 1.5708
+is_active = null
 
 [node name="Wagon2" parent="LoopPath" instance=ExtResource("6_ca42v")]
 rotation = 1.5708
+is_active = null
 
 [node name="Wagon3" parent="LoopPath" instance=ExtResource("6_ca42v")]
 rotation = 1.5708
+is_active = null
 
 [node name="MainBase" parent="." instance=ExtResource("1_yqjtg")]
 
@@ -275,11 +278,12 @@ script = ExtResource("3_lbhrr")
 [node name="UI" type="CanvasLayer" parent="."]
 
 [node name="MarginContainer" type="MarginContainer" parent="UI"]
-anchors_preset = 15
+anchors_preset = 1
+anchor_left = 1.0
 anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_left = -505.0
+offset_bottom = 56.0
+grow_horizontal = 0
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 16
@@ -290,13 +294,22 @@ layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
 
-[node name="MultiPlaceableDisplay" parent="UI/MarginContainer" instance=ExtResource("13_264po")]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-placeables = Array[ExtResource("14_1kice")]([SubResource("Resource_qouja"), SubResource("Resource_wljb1"), SubResource("Resource_v2yb1"), SubResource("Resource_js0lu"), SubResource("Resource_gxtfn"), SubResource("Resource_twgab"), SubResource("Resource_02fa5"), SubResource("Resource_e1j6l"), SubResource("Resource_bt5mj"), SubResource("Resource_37s47"), SubResource("Resource_5newe")])
+[node name="MarginContainer2" type="MarginContainer" parent="UI"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -128.0
+offset_top = -104.0
+grow_horizontal = 0
+grow_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 4
 
-[node name="LoopButton" type="TextureButton" parent="UI/MarginContainer"]
+[node name="LoopButton" type="TextureButton" parent="UI/MarginContainer2"]
 modulate = Color(0.412, 0.412, 0.412, 1)
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
@@ -307,6 +320,24 @@ toggle_mode = true
 texture_normal = ExtResource("12_dinhu")
 texture_pressed = ExtResource("13_kvuet")
 stretch_mode = 0
+
+[node name="MarginContainer3" type="MarginContainer" parent="UI"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -189.0
+offset_right = 688.0
+grow_vertical = 0
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 4
+
+[node name="MultiPlaceableDisplay" parent="UI/MarginContainer3" instance=ExtResource("13_264po")]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 8
+placeables = Array[ExtResource("14_1kice")]([SubResource("Resource_qouja"), SubResource("Resource_wljb1"), SubResource("Resource_v2yb1"), SubResource("Resource_js0lu"), SubResource("Resource_gxtfn"), SubResource("Resource_twgab"), SubResource("Resource_02fa5"), SubResource("Resource_e1j6l"), SubResource("Resource_bt5mj"), SubResource("Resource_37s47"), SubResource("Resource_5newe")])
 
 [node name="AudioStreamCrossfader" type="Node" parent="." node_paths=PackedStringArray("audio_stream_player_1", "audio_stream_player_2")]
 script = ExtResource("4_iywne")
@@ -329,4 +360,4 @@ libraries = {
 
 [connection signal="loop_closed" from="LoopPath" to="." method="_on_loop_path_loop_closed"]
 [connection signal="loop_opened" from="LoopPath" to="." method="_on_loop_path_loop_opened"]
-[connection signal="toggled" from="UI/MarginContainer/LoopButton" to="." method="_on_loop_button_toggled"]
+[connection signal="toggled" from="UI/MarginContainer2/LoopButton" to="." method="_on_loop_button_toggled"]

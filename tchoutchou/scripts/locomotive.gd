@@ -3,15 +3,15 @@ extends PathFollow2D
 
 @export var speed := 200.0
 @export var wagon_separation := 72.0
-@export var active := false:
+@export var is_active := false:
 	set(value):
-		active = value
-		if not active:
+		is_active = value
+		if not is_active:
 			progress = 0.0
 			is_in_station = true
-		visible = active
+		visible = is_active
 		for wagon in wagons:
-			wagon.active = active
+			wagon.is_active = is_active
 
 @export var wagons: Array[Wagon]
 
@@ -19,7 +19,7 @@ var is_in_station = true
 
 
 func _process(delta: float) -> void:
-	if not active:
+	if not is_active:
 		return
 
 	progress += speed * delta

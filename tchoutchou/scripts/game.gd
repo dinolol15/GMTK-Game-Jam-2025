@@ -9,12 +9,12 @@ const MIN_ROPE_LENGTH = 200.0
 
 
 func _on_loop_started() -> void:
-	locomotive.active = true
+	locomotive.is_active = true
 	crossfader_animation_player.play("unchill")
 
 
 func _on_loop_stopped() -> void:
-	locomotive.active = false
+	locomotive.is_active = false
 	crossfader_animation_player.play("chill")
 
 

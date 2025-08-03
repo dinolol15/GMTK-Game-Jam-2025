@@ -9,9 +9,9 @@ font_size = 12
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_85p2f"]
 atlas = ExtResource("2_85p2f")
-region = Rect2(240, 0, 24, 24)
+region = Rect2(240, 24, 24, 24)
 
-[node name="PlaceableDisplay" type="VBoxContainer" node_paths=PackedStringArray("cargo_count_display_container", "name_label", "cargo_texture_rect")]
+[node name="PlaceableDisplay" type="VBoxContainer" node_paths=PackedStringArray("cargo_count_display_container", "name_label", "buy_button", "cargo_texture_rect")]
 anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -22,6 +22,7 @@ alignment = 2
 script = ExtResource("1_85p2f")
 cargo_count_display_container = NodePath("CargoCountDisplayContainer")
 name_label = NodePath("NameLabel")
+buy_button = NodePath("MarginContainer/BuyButton")
 cargo_texture_rect = NodePath("MarginContainer/MarginContainer/CargoTextureRect")
 
 [node name="CargoCountDisplayContainer" type="VBoxContainer" parent="."]
@@ -40,11 +41,12 @@ theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 0
 
-[node name="Button" type="Button" parent="MarginContainer"]
+[node name="BuyButton" type="Button" parent="MarginContainer"]
 layout_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
@@ -54,3 +56,5 @@ theme_override_constants/margin_bottom = 4
 layout_mode = 2
 mouse_filter = 2
 texture = SubResource("AtlasTexture_85p2f")
+
+[connection signal="pressed" from="MarginContainer/BuyButton" to="." method="_on_buy_button_pressed"]
