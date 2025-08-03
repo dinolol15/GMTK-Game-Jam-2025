@@ -1,5 +1,5 @@
 @tool
-class_name RopeLoop
+class_name RopeLine
 extends RopeRendererLine2D
 
 

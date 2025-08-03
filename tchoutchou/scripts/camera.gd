@@ -14,3 +14,4 @@ func _input(event: InputEvent) -> void:
 	elif event.is_action_pressed("zoom_out"):
 		zoom *= 1.0 - zoom_step
 		zoom = clamp(zoom, Vector2(min_zoom, min_zoom), Vector2(max_zoom, max_zoom))
+	Settings.camera_zoom = zoom.x

@@ -50,10 +50,13 @@ cargo_conversions = Array[ExtResource("2_tldlq")]([SubResource("Resource_4vr0y")
 [node name="LoopPath" parent="." instance=ExtResource("1_07qnl")]
 
 [node name="Locomotive" parent="LoopPath" node_paths=PackedStringArray("wagons") instance=ExtResource("2_lxbkj")]
+rotation = 1.5708
 wagons = [NodePath("../Wagon"), NodePath("../Wagon2")]
 
 [node name="Wagon" parent="LoopPath" instance=ExtResource("3_bkf63")]
+rotation = 1.5708
 
 [node name="Wagon2" parent="LoopPath" instance=ExtResource("3_bkf63")]
+rotation = 1.5708
 
 [node name="Camera2D" type="Camera2D" parent="."]
