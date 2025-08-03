@@ -33,6 +33,11 @@ project/assembly_name="Tchoutchou"
 
 enabled=PackedStringArray("res://addons/ropesim/plugin.cfg")
 
+[global_group]
+
+Enemies="All enemy entities"
+Allies="All entities and structures allied with the player"
+
 [input]
 
 click={

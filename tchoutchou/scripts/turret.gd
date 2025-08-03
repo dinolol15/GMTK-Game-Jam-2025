@@ -1,6 +1,7 @@
 extends Node2D
 
 @export var type = "gun"                # gun, flamethrower, laser, rocket
+@export var targetted_group = "enemies" # enemies, allies
 @export var base_damage = 10.0
 @export var base_firerate = 2.0
 @export var base_turning_speed = 360.0  # degrees / s
@@ -30,10 +31,17 @@ var bullet = preload("res://scenes/bullet.tscn")
 var rocket = preload("res://scenes/rocket.tscn")
 
 
+func new_target():
+	var possible_targets = get_tree().get_nodes_in_group(targetted_group)
+	if possible_targets.size() == 0:
+		has_target = false
+	else:
+		target = possible_targets[randi_range(0, possible_targets.size()-1)]
+		has_target = true
+
+
 func _ready() -> void:
-	target = get_tree().root.get_node("Level/MainBase")
 	is_active = true
-	has_target = true
 
 	$Sprite.play(type)
 	match type:
@@ -58,14 +66,14 @@ func get_direction_to_target() -> Vector2:
 
 
 func get_angle_to_target() -> float:
-	return target_direction.angle() - global_rotation
+	return (global_position - target.global_position).angle() - global_rotation
 
 
 func rotate_towards_target() -> void:
 	var angle_to_target = get_angle_to_target()
 
 	if abs(angle_to_target) < rotation_speed:
-		global_rotation = target_direction.angle()
+		rotation += angle_to_target
 	else:
 		rotation += rotation_speed * sign(angle_to_target)
 
@@ -91,6 +99,7 @@ func shoot() -> void:
 	projectile_instance.hits_allies = hits_allies
 	if type == "rocket":
 		projectile_instance.target = target
+		projectile_instance.targetted_group = targetted_group
 	get_tree().root.add_child(projectile_instance) # bullet is parented under the root node
 	#$GunSFX.play()
 
@@ -100,13 +109,15 @@ func _physics_process(_delta: float) -> void:
 		target_direction = get_direction_to_target()
 		target_distance = get_distance_to_target()
 	else:
-		has_target = false
+		new_target()
 
 	if is_active and has_target:
 		rotate_towards_target()
 
 		if is_target_in_range():
 			shoot()
+
+	new_target()
 
 
 

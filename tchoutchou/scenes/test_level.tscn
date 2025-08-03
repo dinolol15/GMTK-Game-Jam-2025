@@ -14,3 +14,6 @@ script = ExtResource("1_paw1w")
 [node name="Turret" parent="." instance=ExtResource("3_j6w7d")]
 position = Vector2(263, 152)
 type = "rocket"
+base_damage = 30.0
+base_turning_speed = 120.0
+hits_allies = false

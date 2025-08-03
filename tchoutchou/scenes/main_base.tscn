@@ -19,7 +19,7 @@ texture = ExtResource("1_lo0ow")
 [node name="PhysicsCollider" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_2mtuc")
 
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D" parent="." groups=["Allies"]]
 collision_layer = 2
 collision_mask = 32
 
