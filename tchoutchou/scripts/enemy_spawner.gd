@@ -15,7 +15,7 @@ var exploder = preload("res://scenes/enemy_exploder.tscn")
 var waves = [
 	{
 		"spawn_delay": 0, # seconds
-		"wave_delay": 300.0,
+		"wave_delay": 600.0,
 		"enemies": {
 			strafer: 0,
 			exploder: 0
@@ -112,7 +112,7 @@ func _physics_process(_delta: float):
 			print("spawning enemy!")
 			var enemy_instance = enemies.pop_front().instantiate()
 
-			enemy_instance.position = Vector2.from_angle(randf() * 2 * PI) * 1000
+			enemy_instance.position = Vector2.from_angle(randf() * 2 * PI) * 2500
 			get_tree().root.add_child(enemy_instance)
 	elif counter > wave_delay:
 		next_wave()

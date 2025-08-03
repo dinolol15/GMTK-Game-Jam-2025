@@ -11,7 +11,7 @@ to_cargo = 5
 cooldown = 3.0
 metadata/_custom_type_script = "uid://dng8c0vst2yed"
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_osfb1"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_mqoy4"]
 radius = 128.0
 
 [node name="CoalStation" instance=ExtResource("1_jykfo")]
@@ -19,11 +19,11 @@ cargo_conversions = Array[ExtResource("2_seqek")]([SubResource("Resource_s5jj8")
 range_circle_color = Color(0.1, 0.1, 0.1, 1)
 
 [node name="CollisionShape2D" parent="." index="0"]
-shape = SubResource("CircleShape2D_osfb1")
+shape = SubResource("CircleShape2D_mqoy4")
 
 [node name="RangeCircle" parent="." index="1"]
-instance_shader_parameters/fill_color = Color(0.1, 0.1, 0.1, 1)
-fill_color = Color(0.1, 0.1, 0.1, 1)
+instance_shader_parameters/fill_color = Color(0.3, 0.3, 0.3, 1)
+fill_color = Color(0.3, 0.3, 0.3, 1)
 
 [node name="StationCargoConversionDisplay" parent="." index="2"]
 cargo_conversions = Array[ExtResource("2_seqek")]([SubResource("Resource_s5jj8")])

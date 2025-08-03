@@ -495,12 +495,10 @@ audio_stream_player_2 = NodePath("NotChillAudioStreamPlayer")
 
 [node name="ChillAudioStreamPlayer" type="AudioStreamPlayer" parent="AudioStreamCrossfader"]
 stream = ExtResource("5_u5sy4")
-autoplay = true
 
 [node name="NotChillAudioStreamPlayer" type="AudioStreamPlayer" parent="AudioStreamCrossfader"]
 stream = ExtResource("6_gee14")
 volume_db = inf_neg
-autoplay = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="AudioStreamCrossfader"]
 libraries = {

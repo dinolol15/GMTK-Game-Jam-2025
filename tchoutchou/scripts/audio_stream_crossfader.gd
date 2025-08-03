@@ -10,3 +10,8 @@ extends Node
 
 @export var audio_stream_player_1: AudioStreamPlayer
 @export var audio_stream_player_2: AudioStreamPlayer
+
+
+func _ready() -> void:
+	audio_stream_player_1.play()
+	audio_stream_player_2.play()
