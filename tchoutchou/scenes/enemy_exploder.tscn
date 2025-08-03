@@ -15,7 +15,7 @@ motion_mode = 1
 script = ExtResource("1_2regq")
 base_health = 10.0
 base_speed = 100.0
-base_damage = 20.0
+base_damage = 30.0
 base_firerate = 0.0
 enemy_type = "exploder"
 

@@ -41,7 +41,7 @@ func shoot(damage: float, hits_enemies: bool, hits_allies: bool):
 	projectile_instance.hits_enemies = hits_enemies
 	projectile_instance.hits_allies = hits_allies
 	get_parent().add_child(projectile_instance) # bullet is parented under the root node
-	#$GunSFX.play()
+	$GunSFX.play()
 
 func explode(damage: float, hits_enemies: bool, hits_allies: bool):
 	var explosion_instance = explosion.instantiate()
@@ -70,6 +70,25 @@ func process_hit(attack: Node2D):
 		queue_free()
 
 
+func new_target():
+	var possible_targets = get_tree().get_nodes_in_group("allies")
+	if possible_targets.size() == 0:
+		has_target = false
+		return
+
+	var choice: Node2D
+	var distance = INF
+
+	for new_choice in possible_targets:
+		var new_distance = (new_choice.global_position - global_position).length()
+		if new_distance < distance:
+			choice = new_choice
+			distance = new_distance
+
+	target = choice
+	has_target = true
+
+
 func strafer_ai_tick():
 	if not has_target:
 		# TODO: implement target switching and priorities
@@ -81,8 +100,8 @@ func strafer_ai_tick():
 	rotation = target_direction.angle() - atan(strafe_sharpness * (get_distance_to_target() - attack_distance * 0.8)) + PI/2
 	velocity = base_speed * Vector2.from_angle(rotation)
 
-	if counter % attack_cooldown == 0 and target.is_alive and target_distance <= attack_distance:
-		shoot(base_damage, false, true)
+	#if counter % attack_cooldown == 0 and target.is_alive and target_distance <= attack_distance:
+		#shoot(base_damage, false, true)
 
 
 func exploder_ai_tick():
@@ -109,7 +128,7 @@ func _physics_process(_delta: float) -> void:
 		target_direction = get_direction_vector(target.position)
 		target_distance = get_distance_to_target()
 	else:
-		has_target = false
+		new_target()
 
 	# Handle the artificial "intelligence"
 	match enemy_type:

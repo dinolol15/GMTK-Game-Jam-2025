@@ -5,12 +5,12 @@ const base_health = 1000.0
 
 var health = base_health
 var is_alive = true
-var play_damage_sound = false
+#var play_damage_sound = false
 var damage_sfx_cooldown = 0
 
 
 func _ready() -> void:
-	pass
+	add_to_group("allies")
 
 
 func process_hit(attack: Node2D):

@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-var speed = 500.0
+var speed = 1000.0
 var projectile_range = 1000.0
 var hits_enemies = true
 var hits_allies = true

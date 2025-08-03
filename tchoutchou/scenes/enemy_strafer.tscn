@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://cfbf28ehdhg35"]
+[gd_scene load_steps=6 format=3 uid="uid://cfbf28ehdhg35"]
 
 [ext_resource type="Script" uid="uid://b6c8nc5cl45mx" path="res://scripts/enemy.gd" id="1_8fiay"]
 [ext_resource type="Texture2D" uid="uid://cuiriuhjkhjid" path="res://sprites/placeholders/placeholder-enemy.png" id="2_w0u3a"]
 [ext_resource type="AudioStream" uid="uid://dohxqoawgryqp" path="res://plink_sfx.tres" id="3_w0u3a"]
+[ext_resource type="PackedScene" uid="uid://b0op4ifiusywu" path="res://scenes/gun_turret.tscn" id="4_pt6hc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4gyqm"]
 size = Vector2(32, 32)
@@ -32,6 +33,14 @@ polygon = PackedVector2Array(-32, -32, 32, 0, -32, 32)
 [node name="GunSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_w0u3a")
 pitch_scale = 1.25
+
+[node name="GunTurret" parent="." instance=ExtResource("4_pt6hc")]
+scale = Vector2(0.5, 0.5)
+targetted_group = "allies"
+base_firerate = 1.0
+max_distance = 250.0
+hits_allies = true
+hits_enemies = false
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="body_entered" from="Hitbox" to="." method="_on_hitbox_body_entered"]

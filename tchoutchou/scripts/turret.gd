@@ -13,7 +13,7 @@ extends Node2D
 var cooldown_length = int(60 / base_firerate) if base_firerate >= 0 else -1
 var turning_speed = deg_to_rad(base_turning_speed / 60.0)
 
-var is_active = false
+@export var is_active = true
 var has_target = false
 var cooldown = 0
 
@@ -55,7 +55,6 @@ func new_target():
 
 
 func _ready() -> void:
-	is_active = true
 	$Sprite.play(type)
 	match type:
 		"gun":
