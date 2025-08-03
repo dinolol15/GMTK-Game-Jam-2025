@@ -27,7 +27,7 @@ var target_distance: float
 var bullet = preload("res://scenes/bullet.tscn")
 #var flame = preload("res://scenes/fire.tscn")
 #var laser = preload("res://scenes/laser.tscn")
-#var rocket = preload("res://scenes/rocket.tscn")
+var rocket = preload("res://scenes/rocket.tscn")
 
 
 func _ready() -> void:
@@ -46,10 +46,10 @@ func _ready() -> void:
 		#"laser":
 			#projectile = laser
 			#muzzle_marker = $LaserMuzzle
-		#"rocket":
-			#projectile = rocket
-			#muzzle_marker = $RocketMuzzle
-			#backblast_marker = $RocketBackblast
+		"rocket":
+			projectile = rocket
+			muzzle_marker = $RocketMuzzle
+			backblast_marker = $RocketBackblast
 
 
 func get_direction_to_target() -> Vector2:
@@ -89,6 +89,8 @@ func shoot() -> void:
 	projectile_instance.damage = base_damage
 	projectile_instance.hits_enemies = hits_enemies
 	projectile_instance.hits_allies = hits_allies
+	if type == "rocket":
+		projectile_instance.target = target
 	get_tree().root.add_child(projectile_instance) # bullet is parented under the root node
 	#$GunSFX.play()
 
