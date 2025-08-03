@@ -143,4 +143,5 @@ func _physics_process(_delta: float) -> void:
 	if cooldown > 0:
 		cooldown -= 1
 
-	is_active = ammo_station.cooldown_timer.is_stopped()
+	if ammo_station != null:
+		is_active = ammo_station.cooldown_timer.is_stopped()

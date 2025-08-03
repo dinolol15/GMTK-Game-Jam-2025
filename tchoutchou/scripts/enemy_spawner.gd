@@ -1,5 +1,7 @@
 extends Node2D
 
+@export var wave_timer_label: Label
+
 var wave = -1
 var spawning_in_progress = false
 var enemies = []
@@ -70,10 +72,11 @@ var waves = [
 ]
 
 
-func _ready():
-	#print("hello?")
-	#next_wave()
-	pass
+func format_frames_to_time(frames: int) -> String:
+	var total_seconds = frames / 60
+	var minutes = int(total_seconds) / 60
+	var seconds = int(total_seconds) % 60
+	return "%d:%02d" % [minutes, seconds]
 
 
 func next_wave():
@@ -114,4 +117,7 @@ func _physics_process(_delta: float):
 	elif counter > wave_delay:
 		next_wave()
 	#print(counter > wave_delay * 60)
+
+	wave_timer_label.text = "Next Wave - " + format_frames_to_time(wave_delay - counter)
+
 	counter += 1

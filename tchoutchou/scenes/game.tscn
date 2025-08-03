@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://wduj21d75dnl"]
+[gd_scene load_steps=62 format=3 uid="uid://wduj21d75dnl"]
 
 [ext_resource type="Shader" uid="uid://bhjktewdb5dse" path="res://shaders/background.gdshader" id="1_0tnpc"]
 [ext_resource type="Script" uid="uid://d17tguwenyq7u" path="res://scripts/game.gd" id="1_trtic"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://bfmxgoaa5febu" path="res://scripts/camera.gd" id="3_lbhrr"]
 [ext_resource type="PackedScene" uid="uid://ci073hgekjamw" path="res://scenes/ui/cargo_storage_display.tscn" id="3_lnu2h"]
 [ext_resource type="Script" uid="uid://tl20c5y5xo0o" path="res://scripts/audio_stream_crossfader.gd" id="4_iywne"]
+[ext_resource type="PackedScene" path="res://scenes/enemy_spawner.tscn" id="4_wljb1"]
 [ext_resource type="AudioStream" uid="uid://bb8x2defc6w8d" path="res://sounds/tchoutchouchill.wav" id="5_u5sy4"]
 [ext_resource type="PackedScene" uid="uid://7axpi421xeat" path="res://scenes/loop_path.tscn" id="5_vtaks"]
 [ext_resource type="PackedScene" uid="uid://c6hnlxdkiyqeh" path="res://scenes/wagon.tscn" id="6_ca42v"]
@@ -55,6 +56,9 @@ shader = ExtResource("1_0tnpc")
 shader_parameter/big_noise = SubResource("NoiseTexture2D_0tnpc")
 shader_parameter/small_noise = SubResource("NoiseTexture2D_vtaks")
 shader_parameter/period = 0.004
+
+[sub_resource type="LabelSettings" id="LabelSettings_wljb1"]
+font_size = 25
 
 [sub_resource type="Resource" id="Resource_nepv3"]
 script = ExtResource("14_1kice")
@@ -333,6 +337,9 @@ texture = ExtResource("2_vtaks")
 polygon = PackedVector2Array(-100000, -100000, -100000, 100000, 100000, 100000, 100000, -100000)
 uv = PackedVector2Array(0, 0, 0, 128, 128, 128, 128, 0)
 
+[node name="EnemySpawner" parent="." node_paths=PackedStringArray("wave_timer_label") instance=ExtResource("4_wljb1")]
+wave_timer_label = NodePath("../UI/MarginContainer/VBoxContainer/WaveTimerLabel")
+
 [node name="LoopPath" parent="." instance=ExtResource("5_vtaks")]
 position = Vector2(0, -400)
 
@@ -388,10 +395,20 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 4
 
-[node name="CargoStorageDisplay" parent="UI/MarginContainer" instance=ExtResource("3_lnu2h")]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer"]
+layout_mode = 2
+
+[node name="CargoStorageDisplay" parent="UI/MarginContainer/VBoxContainer" instance=ExtResource("3_lnu2h")]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
+
+[node name="WaveTimerLabel" type="Label" parent="UI/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 1
+text = "Next Wave - 5:00"
+label_settings = SubResource("LabelSettings_wljb1")
 
 [node name="MarginContainer2" type="MarginContainer" parent="UI"]
 anchors_preset = 3
