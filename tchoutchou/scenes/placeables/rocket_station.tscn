@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=3 uid="uid://c2etifwsjlbkc"]
+
+[ext_resource type="PackedScene" uid="uid://h7ul73bxxghh" path="res://scenes/station.tscn" id="1_hv6ds"]
+[ext_resource type="Script" uid="uid://t4eshkcmedar" path="res://scripts/stations/crafting_station.gd" id="2_pcaft"]
+[ext_resource type="Script" uid="uid://dng8c0vst2yed" path="res://scripts/cargo_conversion.gd" id="3_746b4"]
+[ext_resource type="Texture2D" uid="uid://c185w4i1qg0wv" path="res://sprites/placeholders/placeholder-base.png" id="4_pg2ao"]
+
+[sub_resource type="Resource" id="Resource_hv6ds"]
+script = ExtResource("3_746b4")
+from_cargo = 11
+to_cargo = 0
+cooldown = 0.0
+
+[sub_resource type="Resource" id="Resource_pcaft"]
+script = ExtResource("3_746b4")
+from_cargo = 9
+to_cargo = 0
+cooldown = 0.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_746b4"]
+radius = 128.0
+
+[node name="AmmoStation" instance=ExtResource("1_hv6ds")]
+script = ExtResource("2_pcaft")
+ingredients = Dictionary[int, bool]({
+9: false,
+11: false
+})
+result = 13
+cargo_conversions = Array[ExtResource("3_746b4")]([SubResource("Resource_hv6ds"), SubResource("Resource_pcaft")])
+range_circle_color = Color(1, 0.415686, 0, 1)
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CircleShape2D_746b4")
+
+[node name="RangeCircle" parent="." index="1"]
+instance_shader_parameters/fill_color = Color(1, 0.415686, 0, 1)
+fill_color = Color(1, 0.415686, 0, 1)
+
+[node name="StationCargoConversionDisplay" parent="." index="2"]
+cargo_conversions = Array[ExtResource("3_746b4")]([SubResource("Resource_hv6ds"), SubResource("Resource_pcaft")])
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="4"]
+modulate = Color(1, 0.415686, 0, 1)
+texture = ExtResource("4_pg2ao")
+
+[connection signal="cargo_converted" from="." to="." method="_on_cargo_converted"]

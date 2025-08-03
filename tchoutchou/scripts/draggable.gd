@@ -21,7 +21,7 @@ func _input(event: InputEvent) -> void:
 	if dragging:
 		if event.is_action_released("click"):
 			dragging = false
-		elif event is InputEventMouseMotion:
+		elif event is InputEventMouseMotion and not Input.is_action_pressed("pan"):
 			position += event.relative / Globals.camera_zoom
 	elif hovering and event.is_action_pressed("click") and not Globals.looping:
 		dragging = true

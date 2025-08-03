@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=3 uid="uid://wduj21d75dnl"]
+[gd_scene load_steps=58 format=3 uid="uid://wduj21d75dnl"]
 
 [ext_resource type="Shader" uid="uid://bhjktewdb5dse" path="res://shaders/background.gdshader" id="1_0tnpc"]
 [ext_resource type="Script" uid="uid://d17tguwenyq7u" path="res://scripts/game.gd" id="1_trtic"]
@@ -23,7 +23,10 @@
 [ext_resource type="PackedScene" uid="uid://didp6cj8fubkr" path="res://scenes/placeables/ammo_station.tscn" id="15_bhx41"]
 [ext_resource type="PackedScene" uid="uid://v5s45htywplc" path="res://scenes/placeables/stone_station.tscn" id="16_5newe"]
 [ext_resource type="PackedScene" uid="uid://bhvkf3k6fk1r3" path="res://scenes/placeables/smelting_station.tscn" id="16_qnb83"]
+[ext_resource type="PackedScene" uid="uid://ca82iotte61gy" path="res://scenes/placeables/rocket_turret.tscn" id="17_suyxu"]
 [ext_resource type="PackedScene" uid="uid://fikyc3lipgd1" path="res://scenes/placeables/copper_ore_station.tscn" id="17_sww3w"]
+[ext_resource type="PackedScene" uid="uid://c2etifwsjlbkc" path="res://scenes/placeables/rocket_station.tscn" id="18_qouja"]
+[ext_resource type="PackedScene" uid="uid://b0op4ifiusywu" path="res://scenes/placeables/gun_turret.tscn" id="18_sgl2t"]
 [ext_resource type="PackedScene" uid="uid://b7bhq6jx15vxy" path="res://scenes/placeables/iron_ore_station.tscn" id="18_suyxu"]
 [ext_resource type="PackedScene" uid="uid://b5lqiiiwhqd5r" path="res://scenes/placeables/coal_station.tscn" id="19_sgl2t"]
 
@@ -51,6 +54,52 @@ shader_parameter/big_noise = SubResource("NoiseTexture2D_0tnpc")
 shader_parameter/small_noise = SubResource("NoiseTexture2D_vtaks")
 shader_parameter/period = 0.004
 
+[sub_resource type="Resource" id="Resource_nepv3"]
+script = ExtResource("14_1kice")
+name = "Rocket Turret"
+icon = 13
+price = Dictionary[int, int]({
+3: 5,
+7: 5,
+9: 5
+})
+scene = ExtResource("17_suyxu")
+metadata/_custom_type_script = "uid://b1bmombhv3ugv"
+
+[sub_resource type="Resource" id="Resource_7025r"]
+script = ExtResource("14_1kice")
+name = "Rocket Crafter"
+icon = 13
+price = Dictionary[int, int]({
+3: 5,
+7: 5,
+9: 5
+})
+scene = ExtResource("18_qouja")
+metadata/_custom_type_script = "uid://b1bmombhv3ugv"
+
+[sub_resource type="Resource" id="Resource_m4url"]
+script = ExtResource("14_1kice")
+name = "Gun Turret"
+icon = 12
+price = Dictionary[int, int]({
+3: 5,
+7: 5
+})
+scene = ExtResource("18_sgl2t")
+metadata/_custom_type_script = "uid://b1bmombhv3ugv"
+
+[sub_resource type="Resource" id="Resource_v2yb1"]
+script = ExtResource("14_1kice")
+name = "Ammo Crafter"
+icon = 12
+price = Dictionary[int, int]({
+3: 5,
+7: 5
+})
+scene = ExtResource("15_bhx41")
+metadata/_custom_type_script = "uid://b1bmombhv3ugv"
+
 [sub_resource type="Resource" id="Resource_qouja"]
 script = ExtResource("14_1kice")
 name = "Fuel Refiner"
@@ -70,17 +119,6 @@ price = Dictionary[int, int]({
 4: 5,
 7: 5
 })
-metadata/_custom_type_script = "uid://b1bmombhv3ugv"
-
-[sub_resource type="Resource" id="Resource_v2yb1"]
-script = ExtResource("14_1kice")
-name = "Ammo Crafter"
-icon = 12
-price = Dictionary[int, int]({
-3: 5,
-7: 5
-})
-scene = ExtResource("15_bhx41")
 metadata/_custom_type_script = "uid://b1bmombhv3ugv"
 
 [sub_resource type="Resource" id="Resource_js0lu"]
@@ -169,6 +207,58 @@ price = Dictionary[int, int]({
 scene = ExtResource("6_kvpfn")
 metadata/_custom_type_script = "uid://b1bmombhv3ugv"
 
+[sub_resource type="Animation" id="Animation_qnb83"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(688, 189)]
+}
+
+[sub_resource type="Animation" id="Animation_sww3w"]
+resource_name = "appear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(688, 378), Vector2(688, 189)]
+}
+
+[sub_resource type="Animation" id="Animation_bhx41"]
+resource_name = "disappear"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:size")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(688, 189), Vector2(688, 378)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_suyxu"]
+_data = {
+&"RESET": SubResource("Animation_qnb83"),
+&"appear": SubResource("Animation_sww3w"),
+&"disappear": SubResource("Animation_bhx41")
+}
+
 [sub_resource type="Animation" id="Animation_ir15t"]
 length = 0.001
 tracks/0/type = "value"
@@ -223,11 +313,13 @@ _data = {
 &"unchill": SubResource("Animation_trtic")
 }
 
-[node name="Game" type="Node2D" node_paths=PackedStringArray("loop_path", "locomotive", "loop_button", "crossfader_animation_player")]
+[node name="Game" type="Node2D" node_paths=PackedStringArray("loop_path", "locomotive", "placeable_root", "loop_button", "store_animation_player", "crossfader_animation_player")]
 script = ExtResource("1_trtic")
 loop_path = NodePath("LoopPath")
 locomotive = NodePath("LoopPath/Locomotive")
-loop_button = NodePath("UI/MarginContainer2/LoopButton")
+placeable_root = NodePath("PlaceableRoot")
+loop_button = NodePath("UI/MarginContainer2/HBoxContainer/LoopButton")
+store_animation_player = NodePath("UI/MarginContainer3/AnimationPlayer")
 crossfader_animation_player = NodePath("AudioStreamCrossfader/AnimationPlayer")
 
 [node name="Background" type="Polygon2D" parent="."]
@@ -242,33 +334,36 @@ position = Vector2(0, -400)
 
 [node name="Locomotive" parent="LoopPath" node_paths=PackedStringArray("wagons") instance=ExtResource("7_ir15t")]
 rotation = 1.5708
-wagons = [NodePath("../Wagon"), NodePath("../Wagon2"), NodePath("../Wagon3")]
+wagons = [NodePath("../Wagon"), NodePath("../Wagon2"), NodePath("../Wagon3"), NodePath("../Wagon4"), NodePath("../Wagon5")]
 
 [node name="Wagon" parent="LoopPath" instance=ExtResource("6_ca42v")]
 rotation = 1.5708
-is_active = null
 
 [node name="Wagon2" parent="LoopPath" instance=ExtResource("6_ca42v")]
 rotation = 1.5708
-is_active = null
 
 [node name="Wagon3" parent="LoopPath" instance=ExtResource("6_ca42v")]
 rotation = 1.5708
-is_active = null
+
+[node name="Wagon4" parent="LoopPath" instance=ExtResource("6_ca42v")]
+rotation = 1.5708
+
+[node name="Wagon5" parent="LoopPath" instance=ExtResource("6_ca42v")]
+rotation = 1.5708
 
 [node name="MainBase" parent="." instance=ExtResource("1_yqjtg")]
 
-[node name="PlacableRoot" type="Node2D" parent="."]
+[node name="PlaceableRoot" type="Node2D" parent="."]
 
-[node name="StationDragger" parent="PlacableRoot" instance=ExtResource("8_rysoc")]
+[node name="StationDragger" parent="PlaceableRoot" instance=ExtResource("8_rysoc")]
 position = Vector2(250, -200)
 
-[node name="WoodLogStation" parent="PlacableRoot/StationDragger" instance=ExtResource("7_ca42v")]
+[node name="WoodLogStation" parent="PlaceableRoot/StationDragger" instance=ExtResource("7_ca42v")]
 
-[node name="Pin" parent="PlacableRoot" instance=ExtResource("6_kvpfn")]
+[node name="Pin" parent="PlaceableRoot" instance=ExtResource("6_kvpfn")]
 position = Vector2(-300, 0)
 
-[node name="Pin2" parent="PlacableRoot" instance=ExtResource("6_kvpfn")]
+[node name="Pin2" parent="PlaceableRoot" instance=ExtResource("6_kvpfn")]
 position = Vector2(300, 0)
 
 [node name="PanZoomCamera" type="Camera2D" parent="."]
@@ -309,7 +404,28 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 4
 
-[node name="LoopButton" type="TextureButton" parent="UI/MarginContainer2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/MarginContainer2/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="UI/MarginContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Train Speed"
+horizontal_alignment = 1
+
+[node name="TrainSpeedSlider" type="HSlider" parent="UI/MarginContainer2/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_vertical = 1
+min_value = 100.0
+max_value = 500.0
+value = 100.0
+
+[node name="LoopButton" type="TextureButton" parent="UI/MarginContainer2/HBoxContainer"]
 modulate = Color(0.412, 0.412, 0.412, 1)
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
@@ -326,7 +442,7 @@ anchors_preset = 2
 anchor_top = 1.0
 anchor_bottom = 1.0
 offset_top = -189.0
-offset_right = 688.0
+offset_right = 868.0
 grow_vertical = 0
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 4
@@ -337,7 +453,12 @@ theme_override_constants/margin_bottom = 4
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
-placeables = Array[ExtResource("14_1kice")]([SubResource("Resource_qouja"), SubResource("Resource_wljb1"), SubResource("Resource_v2yb1"), SubResource("Resource_js0lu"), SubResource("Resource_gxtfn"), SubResource("Resource_twgab"), SubResource("Resource_02fa5"), SubResource("Resource_e1j6l"), SubResource("Resource_bt5mj"), SubResource("Resource_37s47"), SubResource("Resource_5newe")])
+placeables = Array[ExtResource("14_1kice")]([SubResource("Resource_nepv3"), SubResource("Resource_7025r"), SubResource("Resource_m4url"), SubResource("Resource_v2yb1"), SubResource("Resource_qouja"), SubResource("Resource_wljb1"), SubResource("Resource_js0lu"), SubResource("Resource_gxtfn"), SubResource("Resource_twgab"), SubResource("Resource_02fa5"), SubResource("Resource_e1j6l"), SubResource("Resource_bt5mj"), SubResource("Resource_37s47"), SubResource("Resource_5newe")])
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/MarginContainer3"]
+libraries = {
+&"": SubResource("AnimationLibrary_suyxu")
+}
 
 [node name="AudioStreamCrossfader" type="Node" parent="." node_paths=PackedStringArray("audio_stream_player_1", "audio_stream_player_2")]
 script = ExtResource("4_iywne")
@@ -360,4 +481,6 @@ libraries = {
 
 [connection signal="loop_closed" from="LoopPath" to="." method="_on_loop_path_loop_closed"]
 [connection signal="loop_opened" from="LoopPath" to="." method="_on_loop_path_loop_opened"]
-[connection signal="toggled" from="UI/MarginContainer2/LoopButton" to="." method="_on_loop_button_toggled"]
+[connection signal="value_changed" from="UI/MarginContainer2/HBoxContainer/VBoxContainer/TrainSpeedSlider" to="." method="_on_train_speed_slider_value_changed"]
+[connection signal="toggled" from="UI/MarginContainer2/HBoxContainer/LoopButton" to="." method="_on_loop_button_toggled"]
+[connection signal="placeable_bought" from="UI/MarginContainer3/MultiPlaceableDisplay" to="." method="_on_placeable_bought"]

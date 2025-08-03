@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://b0op4ifiusywu"]
+
+[ext_resource type="PackedScene" uid="uid://ywkdsdtdpl6t" path="res://scenes/turret.tscn" id="1_xt8j5"]
+[ext_resource type="PackedScene" uid="uid://h7ul73bxxghh" path="res://scenes/station.tscn" id="2_7yyx0"]
+[ext_resource type="Script" uid="uid://dng8c0vst2yed" path="res://scripts/cargo_conversion.gd" id="3_daqa1"]
+
+[sub_resource type="Resource" id="Resource_daqa1"]
+script = ExtResource("3_daqa1")
+from_cargo = 12
+to_cargo = 0
+cooldown = 30.0
+metadata/_custom_type_script = "uid://dng8c0vst2yed"
+
+[node name="GunTurret" node_paths=PackedStringArray("ammo_station") instance=ExtResource("1_xt8j5")]
+scale = Vector2(3, 3)
+base_firerate = 3.0
+base_turning_speed = 180.0
+max_distance = 400.0
+hits_allies = false
+ammo_station = NodePath("AmmoStation")
+
+[node name="AmmoStation" parent="." index="0" instance=ExtResource("2_7yyx0")]
+scale = Vector2(0.333, 0.333)
+cargo_conversions = Array[ExtResource("3_daqa1")]([SubResource("Resource_daqa1")])
+
+[node name="Sprite" parent="." index="1"]
+animation = &"gun"

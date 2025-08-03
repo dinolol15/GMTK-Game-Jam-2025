@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=3 uid="uid://ca82iotte61gy"]
+
+[ext_resource type="PackedScene" uid="uid://ywkdsdtdpl6t" path="res://scenes/turret.tscn" id="1_d4d4g"]
+[ext_resource type="PackedScene" uid="uid://h7ul73bxxghh" path="res://scenes/station.tscn" id="2_l23po"]
+[ext_resource type="Script" uid="uid://dng8c0vst2yed" path="res://scripts/cargo_conversion.gd" id="3_yqghk"]
+
+[sub_resource type="Resource" id="Resource_d4d4g"]
+script = ExtResource("3_yqghk")
+from_cargo = 13
+to_cargo = 0
+cooldown = 30.0
+metadata/_custom_type_script = "uid://dng8c0vst2yed"
+
+[node name="RocketTurret" node_paths=PackedStringArray("ammo_station") instance=ExtResource("1_d4d4g")]
+scale = Vector2(3, 3)
+type = "rocket"
+base_damage = 50.0
+base_firerate = 0.5
+base_turning_speed = 60.0
+min_distance = 50.0
+hits_allies = false
+ammo_station = NodePath("AmmoStation")
+
+[node name="AmmoStation" parent="." index="0" instance=ExtResource("2_l23po")]
+scale = Vector2(0.333, 0.333)
+cargo_conversions = Array[ExtResource("3_yqghk")]([SubResource("Resource_d4d4g")])
