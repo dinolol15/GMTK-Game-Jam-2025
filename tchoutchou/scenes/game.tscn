@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://wduj21d75dnl"]
+[gd_scene load_steps=60 format=3 uid="uid://wduj21d75dnl"]
 
 [ext_resource type="Shader" uid="uid://bhjktewdb5dse" path="res://shaders/background.gdshader" id="1_0tnpc"]
 [ext_resource type="Script" uid="uid://d17tguwenyq7u" path="res://scripts/game.gd" id="1_trtic"]
@@ -29,6 +29,8 @@
 [ext_resource type="PackedScene" uid="uid://b0op4ifiusywu" path="res://scenes/placeables/gun_turret.tscn" id="18_sgl2t"]
 [ext_resource type="PackedScene" uid="uid://b7bhq6jx15vxy" path="res://scenes/placeables/iron_ore_station.tscn" id="18_suyxu"]
 [ext_resource type="PackedScene" uid="uid://b5lqiiiwhqd5r" path="res://scenes/placeables/coal_station.tscn" id="19_sgl2t"]
+[ext_resource type="PackedScene" uid="uid://b4hly7ufntmwi" path="res://scenes/placeables/fuel_station.tscn" id="21_qouja"]
+[ext_resource type="PackedScene" uid="uid://b04k40ljmi6na" path="res://scenes/placeables/oil_station.tscn" id="21_sgl2t"]
 
 [sub_resource type="Gradient" id="Gradient_0tnpc"]
 colors = PackedColorArray(0, 0.462745, 0, 1, 0.737255, 1, 0, 1)
@@ -109,6 +111,7 @@ price = Dictionary[int, int]({
 4: 3,
 7: 5
 })
+scene = ExtResource("21_qouja")
 metadata/_custom_type_script = "uid://b1bmombhv3ugv"
 
 [sub_resource type="Resource" id="Resource_wljb1"]
@@ -119,6 +122,7 @@ price = Dictionary[int, int]({
 4: 5,
 7: 5
 })
+scene = ExtResource("21_sgl2t")
 metadata/_custom_type_script = "uid://b1bmombhv3ugv"
 
 [sub_resource type="Resource" id="Resource_js0lu"]
@@ -460,6 +464,13 @@ libraries = {
 &"": SubResource("AnimationLibrary_suyxu")
 }
 
+[node name="DebugButton" type="Button" parent="UI"]
+offset_right = 57.0
+offset_bottom = 20.0
+theme_override_font_sizes/font_size = 8
+text = "Debug Mode"
+flat = true
+
 [node name="AudioStreamCrossfader" type="Node" parent="." node_paths=PackedStringArray("audio_stream_player_1", "audio_stream_player_2")]
 script = ExtResource("4_iywne")
 audio_stream_player_1 = NodePath("ChillAudioStreamPlayer")
@@ -484,3 +495,4 @@ libraries = {
 [connection signal="value_changed" from="UI/MarginContainer2/HBoxContainer/VBoxContainer/TrainSpeedSlider" to="." method="_on_train_speed_slider_value_changed"]
 [connection signal="toggled" from="UI/MarginContainer2/HBoxContainer/LoopButton" to="." method="_on_loop_button_toggled"]
 [connection signal="placeable_bought" from="UI/MarginContainer3/MultiPlaceableDisplay" to="." method="_on_placeable_bought"]
+[connection signal="pressed" from="UI/DebugButton" to="." method="_on_debug_button_pressed"]

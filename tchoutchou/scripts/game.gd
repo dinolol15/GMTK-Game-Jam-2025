@@ -43,6 +43,11 @@ func _on_loop_button_toggled(toggled_on: bool) -> void:
 	Globals.looping = toggled_on
 
 
+func _on_debug_button_pressed():
+	for cargo in Storage.cargo_storage:
+		Storage.add_cargo(cargo, 999)
+
+
 func _on_placeable_bought(placeable: Placeable) -> void:
 	var new_object = placeable.scene.instantiate()
 	if new_object is not Draggable:
