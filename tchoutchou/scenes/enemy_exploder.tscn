@@ -14,7 +14,7 @@ radius = 24.0
 motion_mode = 1
 script = ExtResource("1_2regq")
 base_health = 10.0
-base_speed = 150.0
+base_speed = 100.0
 base_damage = 20.0
 base_firerate = 0.0
 enemy_type = "exploder"
@@ -28,7 +28,7 @@ texture = ExtResource("2_nrwla")
 scale = Vector2(0.33, 0.33)
 shape = SubResource("RectangleShape2D_4gyqm")
 
-[node name="Hitbox" type="Area2D" parent="." groups=["Enemies"]]
+[node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 32
 

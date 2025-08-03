@@ -1,12 +1,13 @@
 extends CharacterBody2D
 
-var speed = 200.0
-var range = 1000.0
-var turning_speed = 1.0
+var speed = 250.0
+var projectile_range = 1000.0
+var turning_speed_degrees = 360.0
 var hits_enemies = true
 var hits_allies = true
 var damage = 0.0
 
+var turning_speed = deg_to_rad(turning_speed_degrees / 60)
 var distance_traveled = 0.0
 var has_target = true
 
@@ -16,6 +17,8 @@ var target: Node2D
 var target_direction: Vector2
 var target_distance: float
 var targetted_group: String
+
+
 
 
 func explode():
@@ -32,9 +35,23 @@ func new_target():
 	var possible_targets = get_tree().get_nodes_in_group(targetted_group)
 	if possible_targets.size() == 0:
 		has_target = false
-	else:
-		target = possible_targets[randi_range(0, possible_targets.size()-1)]
-		has_target = true
+		return
+
+	var choice: Node2D
+	var distance = INF
+
+	for new_choice in possible_targets:
+		var new_distance = (new_choice.global_position - global_position).length()
+		if new_distance < distance:
+			choice = new_choice
+			distance = new_distance
+
+	if distance > (projectile_range - distance_traveled):
+		has_target = false
+		return
+
+	target = choice
+	has_target = true
 
 
 func get_direction_to_target() -> Vector2:
@@ -43,7 +60,14 @@ func get_direction_to_target() -> Vector2:
 
 
 func get_angle_to_target() -> float:
-	return target_direction.angle() - global_rotation
+	var angle = target_direction.angle() - global_rotation
+
+	if angle > PI:
+		angle -= 2*PI
+	elif angle < -PI:
+		angle += 2*PI
+
+	return angle
 
 
 func rotate_towards_target() -> void:
@@ -56,7 +80,7 @@ func rotate_towards_target() -> void:
 
 
 func get_distance_to_target() -> float:
-	return abs((target.global_position - global_position).length())
+	return (target.global_position - global_position).length()
 
 
 func _ready() -> void:
@@ -73,11 +97,11 @@ func _physics_process(_delta: float) -> void:
 	if has_target:
 		rotate_towards_target()
 
-		velocity = Vector2.from_angle(rotation) * speed
-		distance_traveled += speed / 60
-		move_and_slide()
+	velocity = Vector2.from_angle(rotation) * speed
+	distance_traveled += speed / 60
+	move_and_slide()
 
-	if distance_traveled >= range:
+	if distance_traveled >= projectile_range:
 		explode()
 
 

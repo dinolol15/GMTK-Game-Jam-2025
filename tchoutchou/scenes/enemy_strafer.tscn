@@ -20,7 +20,7 @@ texture = ExtResource("2_w0u3a")
 scale = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_4gyqm")
 
-[node name="Hitbox" type="Area2D" parent="." groups=["Enemies"]]
+[node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 4
 collision_mask = 32
 
