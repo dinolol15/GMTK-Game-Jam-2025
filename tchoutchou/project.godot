@@ -18,6 +18,7 @@ config/icon="res://sprites/icon.svg"
 [autoload]
 
 Storage="*res://scripts/storage.gd"
+Settings="*res://scripts/settings.gd"
 
 [display]
 

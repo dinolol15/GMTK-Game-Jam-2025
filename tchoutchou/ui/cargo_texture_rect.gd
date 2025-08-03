@@ -6,6 +6,7 @@ extends TextureRect
 	set(value):
 		cargo = value
 		var frame = Globals.CARGO_FRAMES[cargo]
+		@warning_ignore("integer_division")
 		texture.region.position = Vector2(frame % 11, frame / 11) * 24.0
 
 
