@@ -48,6 +48,7 @@ func try_convert(from_cargo: Globals.Cargo) -> Globals.Cargo:
 
 func _ready():
 	collision_shape.shape = collision_shape.shape.duplicate()
+	cargo_conversions = cargo_conversions
 
 
 func _process(_delta: float):

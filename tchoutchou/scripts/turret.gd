@@ -10,6 +10,8 @@ extends Node2D
 @export var hits_allies = true
 @export var hits_enemies = true
 
+@export var ammo_station: Station
+
 var cooldown_length = int(60 / base_firerate) if base_firerate >= 0 else -1
 var turning_speed = deg_to_rad(base_turning_speed / 60.0)
 
@@ -141,3 +143,5 @@ func _physics_process(_delta: float) -> void:
 
 	if cooldown > 0:
 		cooldown -= 1
+
+	is_active = ammo_station.cooldown_timer.is_stopped()

@@ -5,19 +5,19 @@
 [ext_resource type="Script" uid="uid://t4eshkcmedar" path="res://scripts/stations/crafting_station.gd" id="2_xftrm"]
 [ext_resource type="Script" uid="uid://dng8c0vst2yed" path="res://scripts/cargo_conversion.gd" id="3_xftrm"]
 
-[sub_resource type="Resource" id="Resource_epy2k"]
+[sub_resource type="Resource" id="Resource_mnicj"]
 script = ExtResource("3_xftrm")
 from_cargo = 5
 to_cargo = 0
 cooldown = 0.0
 
-[sub_resource type="Resource" id="Resource_t8f3p"]
+[sub_resource type="Resource" id="Resource_hh3vw"]
 script = ExtResource("3_xftrm")
 from_cargo = 7
 to_cargo = 0
 cooldown = 0.0
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_qsdir"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_bs8uv"]
 radius = 128.0
 
 [node name="AmmoStation" instance=ExtResource("1_axeev")]
@@ -27,18 +27,18 @@ ingredients = Dictionary[int, bool]({
 7: false
 })
 result = 12
-cargo_conversions = Array[ExtResource("3_xftrm")]([SubResource("Resource_epy2k"), SubResource("Resource_t8f3p")])
+cargo_conversions = Array[ExtResource("3_xftrm")]([SubResource("Resource_mnicj"), SubResource("Resource_hh3vw")])
 range_circle_color = Color(1, 1, 0, 1)
 
 [node name="CollisionShape2D" parent="." index="0"]
-shape = SubResource("CircleShape2D_qsdir")
+shape = SubResource("CircleShape2D_bs8uv")
 
 [node name="RangeCircle" parent="." index="1"]
 instance_shader_parameters/fill_color = Color(1, 1, 0, 1)
 fill_color = Color(1, 1, 0, 1)
 
 [node name="StationCargoConversionDisplay" parent="." index="2"]
-cargo_conversions = Array[ExtResource("3_xftrm")]([SubResource("Resource_epy2k"), SubResource("Resource_t8f3p")])
+cargo_conversions = Array[ExtResource("3_xftrm")]([SubResource("Resource_mnicj"), SubResource("Resource_hh3vw")])
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="4"]
 modulate = Color(1, 1, 0, 1)

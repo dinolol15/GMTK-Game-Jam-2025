@@ -17,6 +17,7 @@ enum Cargo {
 	OIL,
 	FUEL,
 	AMMO,
+	ROCKET,
 }
 
 const CARGO_FRAMES: Dictionary[Cargo, int] = {
@@ -33,6 +34,7 @@ const CARGO_FRAMES: Dictionary[Cargo, int] = {
 	Cargo.OIL: 31,
 	Cargo.FUEL: 32,
 	Cargo.AMMO: 20,
+	Cargo.ROCKET: 43,
 }
 
 var camera_zoom = 1.0
